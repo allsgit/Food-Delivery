@@ -12,11 +12,11 @@ const MainwWrapper = styled.div`
   flex-direction: row;
 `;
 
-export default function MainContent() {
+export default function MainContent(props) {
   return (
     <MainwWrapper>
-      <CardGallery />
-      <SideCart />
+      <CardGallery burgerList={props.burgerList} setCart={props.setCart} cart={props.cart} cartValue={props.cartValue}/>
+      <SideCart cart={props.cart} cartValue={props.cartValue} setCartValue={props.setCartValue}/>
       <AdminPannel />
     </MainwWrapper>
   );

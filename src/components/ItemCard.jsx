@@ -58,20 +58,30 @@ const CarWraper = styled.div`
   &:hover {
     outline: 2px solid #de8604;
     box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.43) 0px 6px 6px;
+    transform: scale(1.03);
   }
 `;
 
-export default function ItemCard() {
+export default function ItemCard(props) {
+  const { name, ingredient, price, image} = props.burgers;
+  const copyOfCart = [...props.cart];
+
+  const AddItemToCart = (name, ingredient, price, image) => {
+    copyOfCart.push({ name, ingredient, price, image});
+    props.setCart(copyOfCart);
+  };
+
+  console.log(copyOfCart);
+
   return (
     <CarWraper>
       <ImgWrapper>
-        <ItemImg src={mockImg}></ItemImg>
+        <ItemImg src={image}></ItemImg>
       </ImgWrapper>
-
-      <ItemTitle>4 fromages</ItemTitle>
-      <ItemDetail>Sauce tomate à l'origan ou crème fraîche légère, mozzarella, fromage de chèvre, emmental et Fourme d'Ambert AOP</ItemDetail>
-      <ItemPrice>13 euro</ItemPrice>
-      <Button buttonAction={() => ''} buttonUtility={'Ajouter'} />
+      <ItemTitle>{name}</ItemTitle>
+      <ItemDetail>{ingredient}</ItemDetail>
+      <ItemPrice>{price}</ItemPrice>
+      <Button HandleSumbit={() => AddItemToCart(name, ingredient, price, image)} buttonUtility={'Ajouter'} />
     </CarWraper>
   );
 }

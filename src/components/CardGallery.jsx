@@ -9,19 +9,15 @@ const GalleryWrapper = styled.div`
   justify-content: center;
 `;
 
-export default function CardGallery() {
+export default function CardGallery(props) {
+ 
+
+
   return (
     <GalleryWrapper>
-      <ItemCard />
-      <ItemCard />
-      <ItemCard />
-      <ItemCard />
-      <ItemCard />
-      <ItemCard />
-      <ItemCard />
-      <ItemCard />
-      <ItemCard />
-      <ItemCard />
+      {props.burgerList.map((burgers) => {
+        return <ItemCard  burgers={burgers} setCart={props.setCart} cart={props.cart} />;
+      })}
     </GalleryWrapper>
   );
 }

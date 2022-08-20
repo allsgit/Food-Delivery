@@ -55,15 +55,17 @@ const CartItemQuantity = styled.p`
   font-weight: bold;
 `;
 
-export default function CartAddedProductCard({ cart }) {
+export default function CartAddedProductCard(props) {
+
+  
   return (
     <CartItemAddedWrapper key={3}>
       <ImgWrapper>
-        <CartItemImg src={MockImg}></CartItemImg>
+        <CartItemImg src={props.image}></CartItemImg>
       </ImgWrapper>
       <CartItemInfo>
-        <CartItemTitle>mockName</CartItemTitle>
-        <CartItemPrice>MockPrice</CartItemPrice>
+        <CartItemTitle>{props.name}</CartItemTitle>
+        <CartItemPrice>{props.price}</CartItemPrice>
       </CartItemInfo>
     </CartItemAddedWrapper>
   );

@@ -12,8 +12,9 @@ from{
 
 const BaseButton = styled.button`
   position: relative;
+  text-align: center;
   z-index: 1;
-  height: 36px;
+  height: auto;
   width: 120px;
   background-color: green;
   color: white;
@@ -21,9 +22,9 @@ const BaseButton = styled.button`
   border-radius: 5px;
   overflow: hidden;
   transition: 0.1s;
-  &:active{
+  padding: 7px;
+  &:active {
     transform: scale(0.9);
-
   }
 
   ::before {
@@ -47,5 +48,5 @@ const BaseButton = styled.button`
 `;
 
 export default function Button(props) {
-  return <BaseButton onClick={() => props.buttonAction}>{props.buttonUtility}</BaseButton>;
+  return <BaseButton onClick={props.HandleSumbit}>{props.buttonUtility}</BaseButton>;
 }

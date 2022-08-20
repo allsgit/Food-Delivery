@@ -2,6 +2,19 @@ import React from 'react';
 import styled from 'styled-components';
 import Button from './Button';
 import CardProductCart from './CardProductCart';
+import { keyframes } from 'styled-components';
+import { useEffect, useState } from 'react';
+
+const PriceChangeAnimation = keyframes`
+from{
+ opacity: 0;
+ transform: translateY(10px);
+} to {
+    transform: translateY(0px);
+opacity: 1;
+}
+
+`;
 
 const SideCartWrapper = styled.div`
   position: fixed;
@@ -16,16 +29,27 @@ const SideCartWrapper = styled.div`
   height: 100vh;
   background-color: #fff;
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+
+  .TotalValueWrap {
+    width: 100%;
+    height: 5%;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  .totalAdded {
+    margin: 0 0 10px 0;
+  }
 `;
 
 const TitleCart = styled.h2`
   margin-top: 30px;
-  height: 10%;
+  height: 8%;
 `;
 
 const CartHolderWrapper = styled.div`
-scroll-behavior: smooth;
-overflow: hidden scroll;
+  scroll-behavior: smooth;
+  overflow: hidden scroll;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   margin-bottom: 10px;
   height: 90%;
@@ -33,25 +57,37 @@ overflow: hidden scroll;
 `;
 
 const TotalPrice = styled.p`
-margin-bottom: 20px;
-`
+  text-align: center;
 
-export default function SideCart() {
+  padding: 0 10px;
+  min-width: 60px;
+  max-width: 100px;
+  animation: 0.5s ${PriceChangeAnimation};
+`;
+const TotalProduct = styled.p``;
+
+export default function SideCart(props) {
+  // virer props setCart et Cart car inutile //
+  ///
+  /// pour actualiser un state pour animation utiliser la props en key
+  let totalValue = props.cart.reduce((a, v) => (a = a + v.price), 0);
+  props.setCartValue(totalValue);
+
+  const totalItemAdded = props.cart.length;
+
   return (
     <SideCartWrapper>
       <TitleCart>Votre panier</TitleCart>
       <CartHolderWrapper>
-        <CardProductCart />
-        <CardProductCart />
-        <CardProductCart />
-        <CardProductCart />
-        <CardProductCart />
-        <CardProductCart />
-        <CardProductCart />
-        <CardProductCart />
+        {props.cart.map((ItemInCart) => {
+          return <CardProductCart name={ItemInCart.name} price={ItemInCart.price} image={ItemInCart.image} />;
+        })}
       </CartHolderWrapper>
-      <TotalPrice>Total commande: 30.50 euro</TotalPrice>
-      <Button buttonUtility={'Payer la comande'} />
+      <div className="TotalValueWrap">
+        Total commande: <TotalPrice key={totalValue}> {totalValue} </TotalPrice>€
+      </div>
+      <div className="totalAdded">{totalItemAdded} articles</div>
+      <Button buttonUtility={'Payer la commande'} style={{padding: "10px"}}/>
     </SideCartWrapper>
   );
 }
