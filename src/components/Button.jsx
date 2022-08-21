@@ -15,11 +15,11 @@ const BaseButton = styled.button`
   text-align: center;
   z-index: 1;
   height: auto;
-  width: 120px;
-  background-color: green;
+  width: ${(props) => (props.customSize ? props.customSize : '120px')};
+  background-color: ${(props) => (props.customColor ? props.customColor : 'green')};
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: ${(props) => (props.customStyle ? props.customStyle : '5px')};
   overflow: hidden;
   transition: 0.1s;
   padding: 7px;
@@ -35,7 +35,7 @@ const BaseButton = styled.button`
     left: 0;
     z-index: -1;
     content: '';
-    background-color: orange;
+    background-color: ${(props) => (props.customHover ? props.customHover : 'orange')};
     height: 40px;
     width: 200px;
   }
@@ -48,5 +48,9 @@ const BaseButton = styled.button`
 `;
 
 export default function Button(props) {
-  return <BaseButton onClick={props.HandleSumbit}>{props.buttonUtility}</BaseButton>;
+  return (
+    <BaseButton onClick={props.HandleSumbit} customSize={props.customSize} customColor={props.customColor} customStyle={props.customStyle} customHover={props.customHover}>
+      {props.buttonUtility}
+    </BaseButton>
+  );
 }

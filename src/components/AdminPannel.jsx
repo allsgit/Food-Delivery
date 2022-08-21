@@ -103,6 +103,14 @@ const PriceInput = styled.input`
     z-index: 100;
   }
 `;
+const IngredientsInput = styled.input`
+  width: 100%;
+  height: 40px;
+  margin: 0 0px 10px 0;
+  padding: 0 0 0 10px;
+  border-radius: 3px;
+  border: 0.2px solid grey;
+`;
 const StockInput = styled.select`
   margin: 0 2px;
   height: 40px;
@@ -131,25 +139,28 @@ const SubmitBtn = styled.button`
 
 const OptionTxt = styled.option``;
 
-function AdminPannel({ setPushedProduct }) {
+function AdminPannel(props) {
   const nameRef = useRef();
   const priceRef = useRef();
   const imgRef = useRef();
+  const ingredientsRef = useRef();
   const [selectStock, setSelectStock] = useState('en stock');
   const [selectPub, setSelectPub] = useState('no pub');
   const [hidePannel, setHidePannel] = useState('0px');
 
+  const copyOfBurgerList = [...props.burgerList];
   const PushNewProduct = () => {
-    setPushedProduct({
+    copyOfBurgerList.push({
       name: nameRef.current.value,
-      price: priceRef.current.value,
-      img: imgRef.current.value,
+      price: parseInt(priceRef.current.value),
+      image: imgRef.current.value,
       stock: selectStock,
       pub: selectPub,
+      ingredient: ingredientsRef.current.value,
       id: uuidv4(),
     });
+    props.setBurgerlist(copyOfBurgerList);
   };
-  const HandleHideAdminPannel = () => {};
 
   return (
     <AdminPannelWrapper size={hidePannel}>
@@ -157,17 +168,31 @@ function AdminPannel({ setPushedProduct }) {
       <MenuTabModify>Modifier un produit</MenuTabModify>
       <MenuHide
         onClick={() => {
-          hidePannel === '0px' ? setHidePannel('200px') : setHidePannel('0px');
+          hidePannel === '0px' ? setHidePannel('240px') : setHidePannel('0px');
         }}
       >
         V
       </MenuHide>
-      <ProductImg></ProductImg>
+      <ProductImg src={''}></ProductImg>
       <InputsWrapper>
         <ItemInput placeholder="Nom du produit" ref={nameRef}></ItemInput>
-        <ItemInputImg placeholder="insérer l'url de l'image" ref={imgRef}></ItemInputImg>
+        <ItemInputImg
+          placeholder="insérer l'url de l'image"
+          ref={imgRef}
+        ></ItemInputImg>
+
+        <IngredientsInput
+          placeholder="ingrédients"
+          ref={ingredientsRef}
+        ></IngredientsInput>
+
         <SubInputsWrapper>
-          <PriceInput placeholder="prix" pattern="[0-9]+" ref={priceRef}></PriceInput>
+          <PriceInput
+            placeholder="prix"
+            pattern="[0-9]+"
+            ref={priceRef}
+          ></PriceInput>
+
           <StockInput onChange={(e) => setSelectStock(e.target.value)}>
             <OptionTxt value="en stock">en Stock</OptionTxt>
             <OptionTxt Value="rupture">rupture de stock</OptionTxt>
@@ -177,7 +202,9 @@ function AdminPannel({ setPushedProduct }) {
             <OptionTxt value="pub">pub</OptionTxt>
           </AdsInput>
         </SubInputsWrapper>
-        <SubmitBtn onClick={() => PushNewProduct()}>Ajouter un nouveau produit au menu</SubmitBtn>
+        <SubmitBtn onClick={() => PushNewProduct()}>
+          Ajouter un nouveau produit au menu
+        </SubmitBtn>
       </InputsWrapper>
     </AdminPannelWrapper>
   );

@@ -4,7 +4,9 @@ import styled from 'styled-components';
 
 
 const LogoItem = styled.div`
-text-align: center;
+display: flex;
+align-items: center;
+justify-content: center;
   width: 100px;
   height: 50px;
   background-color: yellow;

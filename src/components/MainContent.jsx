@@ -4,7 +4,6 @@ import CardGallery from './CardGallery';
 import styled from 'styled-components';
 import AdminPannel from './AdminPannel';
 
-
 const MainwWrapper = styled.div`
   position: relative;
   width: 100%;
@@ -15,9 +14,23 @@ const MainwWrapper = styled.div`
 export default function MainContent(props) {
   return (
     <MainwWrapper>
-      <CardGallery burgerList={props.burgerList} setCart={props.setCart} cart={props.cart} cartValue={props.cartValue}/>
-      <SideCart cart={props.cart} cartValue={props.cartValue} setCartValue={props.setCartValue}/>
-      <AdminPannel />
+      <CardGallery
+        burgerList={props.burgerList}
+        setBurgerlist={props.setBurgerlist}
+        setCart={props.setCart}
+        cart={props.cart}
+        cartValue={props.cartValue}
+      />
+      <SideCart
+        cart={props.cart}
+        setCart={props.setCart}
+        cartValue={props.cartValue}
+        setCartValue={props.setCartValue}
+      />
+      <AdminPannel
+        setBurgerlist={props.setBurgerlist}
+        burgerList={props.burgerList}
+      />
     </MainwWrapper>
   );
 }

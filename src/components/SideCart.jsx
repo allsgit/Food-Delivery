@@ -80,14 +80,25 @@ export default function SideCart(props) {
       <TitleCart>Votre panier</TitleCart>
       <CartHolderWrapper>
         {props.cart.map((ItemInCart) => {
-          return <CardProductCart name={ItemInCart.name} price={ItemInCart.price} image={ItemInCart.image} />;
+          return (
+            <CardProductCart
+              name={ItemInCart.name}
+              id={ItemInCart.id}
+              price={ItemInCart.price}
+              image={ItemInCart.image}
+              setCart={props.setCart}
+              cart={props.cart}
+              key={ItemInCart.id}
+            />
+          );
         })}
       </CartHolderWrapper>
       <div className="TotalValueWrap">
-        Total commande: <TotalPrice key={totalValue}> {totalValue} </TotalPrice>€
+        Total commande: <TotalPrice key={totalValue}> {totalValue} </TotalPrice>
+        €
       </div>
       <div className="totalAdded">{totalItemAdded} articles</div>
-      <Button buttonUtility={'Payer la commande'} style={{padding: "10px"}}/>
+      <Button buttonUtility={'Payer la commande'} style={{ padding: '10px' }} />
     </SideCartWrapper>
   );
 }
