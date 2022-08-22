@@ -1,8 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import { keyframes } from 'styled-components';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEff } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import Button from './Button';
+import ImgPreviewForCard from './assets/images/image-preview.png';
 
 // ANIMATIONS //
 
@@ -79,7 +81,7 @@ const SubInputsWrapper = styled.div`
   justify-content: center;
 `;
 
-const ProductImg = styled.div`
+const ProductImg = styled.img`
   width: 180px;
   height: 90%;
   border: 1px solid black;
@@ -88,6 +90,8 @@ const ProductImg = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  object-fit: contain;
+  animation: 0.2s ${showPannelAdminAnim};
 `;
 
 const PriceInput = styled.input`
@@ -146,9 +150,11 @@ function AdminPannel(props) {
   const ingredientsRef = useRef();
   const [selectStock, setSelectStock] = useState('en stock');
   const [selectPub, setSelectPub] = useState('no pub');
-  const [hidePannel, setHidePannel] = useState('0px');
-
+  const [hidePannel, setHidePannel] = useState('240px');
+  const [imgPreview, setImgPreview] = useState(ImgPreviewForCard);
   const copyOfBurgerList = [...props.burgerList];
+
+  // push new product to sale dashboard from admin input pannel
   const PushNewProduct = () => {
     copyOfBurgerList.push({
       name: nameRef.current.value,
@@ -162,6 +168,24 @@ function AdminPannel(props) {
     props.setBurgerlist(copyOfBurgerList);
   };
 
+// CHECK IF INPUT CONTAINT HTTP LINK TO IMAGE
+  const imgCheckerToDisplayPreview = (e) => {
+    if (e.target.value.includes('http' || 'https' || 'ftp' || "data")) {
+      setImgPreview(imgRef.current.value);
+    } else {
+      setImgPreview(ImgPreviewForCard);
+    }
+  };
+
+  // clear Filed
+
+  const ClearField = () => {
+    setImgPreview(ImgPreviewForCard) 
+    imgRef.current.value = ""
+    nameRef.current.value = ""
+    ingredientsRef.current.value = ""
+    priceRef.current.value = ""
+  }
   return (
     <AdminPannelWrapper size={hidePannel}>
       <MenuTabAdd>Ajouter un produit</MenuTabAdd>
@@ -173,12 +197,16 @@ function AdminPannel(props) {
       >
         V
       </MenuHide>
-      <ProductImg src={''}></ProductImg>
+      <ProductImg src={imgPreview}></ProductImg>
       <InputsWrapper>
         <ItemInput placeholder="Nom du produit" ref={nameRef}></ItemInput>
         <ItemInputImg
           placeholder="insérer l'url de l'image"
           ref={imgRef}
+    
+          onChange={(e) => {
+            imgCheckerToDisplayPreview(e);
+          }}
         ></ItemInputImg>
 
         <IngredientsInput
@@ -202,9 +230,9 @@ function AdminPannel(props) {
             <OptionTxt value="pub">pub</OptionTxt>
           </AdsInput>
         </SubInputsWrapper>
-        <SubmitBtn onClick={() => PushNewProduct()}>
-          Ajouter un nouveau produit au menu
-        </SubmitBtn>
+        <Button HandleSumbit={() => PushNewProduct() + ClearField()} buttonUtility={"  Ajouter un nouveau produit au menu"} customSize={"150"}/>
+        
+    
       </InputsWrapper>
     </AdminPannelWrapper>
   );

@@ -37,7 +37,7 @@ const BaseButton = styled.button`
     content: '';
     background-color: ${(props) => (props.customHover ? props.customHover : 'orange')};
     height: 40px;
-    width: 200px;
+    width: 290px;
   }
   &:hover {
     color: black;

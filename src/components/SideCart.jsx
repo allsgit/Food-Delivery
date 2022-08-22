@@ -20,6 +20,7 @@ const SideCartWrapper = styled.div`
   position: fixed;
   display: flex;
   z-index: 20;
+  
   align-items: center;
   flex-direction: column;
   right: 0;
@@ -54,6 +55,8 @@ const CartHolderWrapper = styled.div`
   margin-bottom: 10px;
   height: 90%;
   width: 100%;
+  scroll-behavior: smooth;
+ 
 `;
 
 const TotalPrice = styled.p`
