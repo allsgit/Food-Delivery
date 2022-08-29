@@ -14,19 +14,28 @@ const CardAppearAnimation = keyframes`
     transform: translateX(0);
   }
 `;
-const CardDeleteWizzle= keyframes`
+const CardDeleteWizzle = keyframes`
   from {
    
     transform: translateX(2px);
-    transform: rotate(1deg);
+    transform: rotate(5deg);
   }
   to {
   
     transform: translateX(-2px);
-    transform: rotate(-1deg);
+    transform: rotate(-5deg);
   }
 `;
-
+const opacityCloseButtonAnim = keyframes`
+  from {
+   transform: scale(0);
+   opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity : 1;
+  }
+`;
 
 const ImgWrapper = styled.div`
   padding-top: 10px;
@@ -57,7 +66,7 @@ const ItemPrice = styled.p`
 `;
 const CarWraper = styled.div`
   position: relative;
-  animation: 0.3s ${CardAppearAnimation} ;
+  animation: 0.3s ${CardAppearAnimation};
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -90,6 +99,8 @@ const CloseButton = styled.span`
   width: 20px;
   color: white;
   cursor: pointer;
+  animation: 0.3s ${CardDeleteWizzle} alternate infinite,
+    1s ${opacityCloseButtonAnim};
 `;
 
 export default function ItemCard(props) {
@@ -113,8 +124,10 @@ export default function ItemCard(props) {
 
   return (
     <>
-      <CarWraper>
-        <CloseButton onClick={() => deleteCard(id)}>X</CloseButton>
+      <CarWraper >
+        {props.isPannelAdminShowed === true ? (
+          <CloseButton onClick={() => deleteCard(id)}>X</CloseButton>
+        ) : null}
 
         <ImgWrapper>
           <ItemImg src={image}></ItemImg>

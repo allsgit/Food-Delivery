@@ -46,11 +46,13 @@ function App() {
   ]);
   const [cart, setCart] = useState([]);
   const [cartValue, setCartValue] = useState(0);
-
+  const [isPannelAdminShowed, setIsPannelAdminShowed] = useState(false)
+console.log(isPannelAdminShowed)
   return (
     <div className="App">
+  
       <TopBar />
-      <Nav />
+      <Nav setIsPannelAdminShowed={setIsPannelAdminShowed}/>
       <MainContent
         burgerList={burgerList}
         setBurgerlist={setBurgerlist}
@@ -58,6 +60,7 @@ function App() {
         setCart={setCart}
         cartValue={cartValue}
         setCartValue={setCartValue}
+        isPannelAdminShowed={isPannelAdminShowed}
       />
     </div>
   );

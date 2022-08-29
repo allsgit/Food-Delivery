@@ -97,7 +97,7 @@ export default function SideCart(props) {
         })}
       </CartHolderWrapper>
       <div className="TotalValueWrap">
-        Total commande: <TotalPrice key={totalValue}> {totalValue} </TotalPrice>
+        Total commande: <TotalPrice key={totalValue}> {totalValue.toFixed(2)} </TotalPrice>
         €
       </div>
       <div className="totalAdded">{totalItemAdded} articles</div>

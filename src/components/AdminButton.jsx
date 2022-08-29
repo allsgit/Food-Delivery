@@ -2,7 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { useState } from 'react';
 
+
+
 const CheckBoxWrapper = styled.div`
+position: relative;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -44,6 +47,8 @@ function AdminSwitchButton(props) {
   const [AdminActived, SetAdminActived] = useState('Activer mode admin');
   const [ToogleAnimationSlider, SetToogleAnimationSlider] = useState('white');
 
+  
+
   const HandleSwitchBtnAnimation = () => {
     if (ToogleAnimation === '0px') {
       SetToogleAnimation('260px');
@@ -51,17 +56,20 @@ function AdminSwitchButton(props) {
       SetToogleAnimationSlider('black');
       SetAdminActived('Mode Admin Activé');
       // show admin pannel props source from main.component
-      props.ShowAdminPannel(true); 
+      props.setIsPannelAdminShowed(true); 
     } else {
       SetToogleAnimation('0px');
       SetToogleBgAnimation('#d4d4d4');
       SetToogleAnimationSlider('white');
       SetAdminActived('Activer mode admin');
       // show admin pannel props source from main.component
-     props.ShowAdminPannel(false);
+     props.setIsPannelAdminShowed(false);
  }
+
   };
   return (
+    <>
+      
     <CheckBoxWrapper>
       <LabelSwich>
         <Slider ToogleSwitchBg={ToogleBgAnimation}>
@@ -77,6 +85,7 @@ function AdminSwitchButton(props) {
         </Slider>
       </LabelSwich>
     </CheckBoxWrapper>
+    </>
   );
 }
 

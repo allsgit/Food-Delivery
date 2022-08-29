@@ -5,6 +5,7 @@ import { useRef, useState, useEff } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import Button from './Button';
 import ImgPreviewForCard from './assets/images/image-preview.png';
+import MsgAdminActive from './MsgAdminActive';
 
 // ANIMATIONS //
 
@@ -15,11 +16,11 @@ const showPannelAdminAnim = keyframes`
 // STYLED COMPONENTS
 
 const AdminPannelWrapper = styled.div`
+  display: ${(props) => (props.isPannelAdminShowed === true ? 'flex' : 'none')};
   transition: 0.6s;
   z-index: 10;
   position: fixed;
   bottom: 0;
-  display: flex;
   justify-content: space-between;
   background-color: #fff;
   align-items: center;
@@ -28,6 +29,7 @@ const AdminPannelWrapper = styled.div`
   border-radius: 0 0 10px 0;
   box-shadow: 8px 2px 20px 1px rgba(0, 0, 0, 0.22);
   animation: 0.9s ${showPannelAdminAnim};
+  
 `;
 const MenuTabAdd = styled.span`
   position: absolute;
@@ -51,6 +53,7 @@ const MenuHide = styled(MenuTabAdd)`
   left: 420px;
   width: 80px;
   font-weight: bold;
+  cursor: pointer;
 `;
 
 const InputsWrapper = styled.div`
@@ -102,6 +105,7 @@ const PriceInput = styled.input`
   border: 0.2px solid grey;
   padding: 0 0 0 10px;
   transition: 0.1s;
+  margin-bottom: 10px;
   &:invalid {
     outline: 1px solid red;
     z-index: 100;
@@ -122,12 +126,9 @@ const StockInput = styled.select`
   border-radius: 3px;
   border: 0.2px solid grey;
 `;
-
 const AdsInput = styled(StockInput)`
-  width: 100px;
+  width: 140px;
 `;
-//
-
 const SubmitBtn = styled.button`
   width: 70%;
   height: 40px;
@@ -140,7 +141,6 @@ const SubmitBtn = styled.button`
     transform: scale(0.8);
   }
 `;
-
 const OptionTxt = styled.option``;
 
 function AdminPannel(props) {
@@ -158,7 +158,7 @@ function AdminPannel(props) {
   const PushNewProduct = () => {
     copyOfBurgerList.push({
       name: nameRef.current.value,
-      price: parseInt(priceRef.current.value),
+      price: parseFloat(priceRef.current.value),
       image: imgRef.current.value,
       stock: selectStock,
       pub: selectPub,
@@ -168,73 +168,81 @@ function AdminPannel(props) {
     props.setBurgerlist(copyOfBurgerList);
   };
 
-// CHECK IF INPUT CONTAINT HTTP LINK TO IMAGE
+  // CHECK IF INPUT CONTAINT HTTP LINK TO IMAGE
   const imgCheckerToDisplayPreview = (e) => {
-    if (e.target.value.includes('http' || 'https' || 'ftp' || "data")) {
+    if (e.target.value.includes('http' || 'https' || 'ftp' || 'data')) {
       setImgPreview(imgRef.current.value);
     } else {
       setImgPreview(ImgPreviewForCard);
     }
   };
 
-  // clear Filed
-
+  // CLEAR FIELD ON SUMBIT //
   const ClearField = () => {
-    setImgPreview(ImgPreviewForCard) 
-    imgRef.current.value = ""
-    nameRef.current.value = ""
-    ingredientsRef.current.value = ""
-    priceRef.current.value = ""
-  }
+    setImgPreview(ImgPreviewForCard);
+    imgRef.current.value = '';
+    nameRef.current.value = '';
+    ingredientsRef.current.value = '';
+    priceRef.current.value = '';
+  };
+console.log(props.burgerList);
   return (
-    <AdminPannelWrapper size={hidePannel}>
-      <MenuTabAdd>Ajouter un produit</MenuTabAdd>
-      <MenuTabModify>Modifier un produit</MenuTabModify>
-      <MenuHide
-        onClick={() => {
-          hidePannel === '0px' ? setHidePannel('240px') : setHidePannel('0px');
-        }}
+    <>
+      <AdminPannelWrapper
+        size={hidePannel}
+        isPannelAdminShowed={props.isPannelAdminShowed}
       >
-        V
-      </MenuHide>
-      <ProductImg src={imgPreview}></ProductImg>
-      <InputsWrapper>
-        <ItemInput placeholder="Nom du produit" ref={nameRef}></ItemInput>
-        <ItemInputImg
-          placeholder="insérer l'url de l'image"
-          ref={imgRef}
-    
-          onChange={(e) => {
-            imgCheckerToDisplayPreview(e);
+        <MenuTabAdd>Ajouter un produit</MenuTabAdd>
+        <MenuTabModify>Modifier un produit</MenuTabModify>
+        <MenuHide
+          onClick={() => {
+            hidePannel === '0px'
+              ? setHidePannel('240px')
+              : setHidePannel('0px');
           }}
-        ></ItemInputImg>
+        >
+          reduire V
+        </MenuHide>
+        <ProductImg src={imgPreview}></ProductImg>
+        <InputsWrapper>
+          <ItemInput placeholder="Nom du produit" ref={nameRef}></ItemInput>
+          <ItemInputImg
+            placeholder="insérer l'url de l'image"
+            ref={imgRef}
+            onChange={(e) => {
+              imgCheckerToDisplayPreview(e);
+            }}
+          ></ItemInputImg>
 
-        <IngredientsInput
-          placeholder="ingrédients"
-          ref={ingredientsRef}
-        ></IngredientsInput>
+          <IngredientsInput
+            placeholder="ingrédients"
+            ref={ingredientsRef}
+          ></IngredientsInput>
 
-        <SubInputsWrapper>
-          <PriceInput
-            placeholder="prix"
-            pattern="[0-9]+"
-            ref={priceRef}
-          ></PriceInput>
+          <SubInputsWrapper>
+            <PriceInput placeholder="prix" ref={priceRef}></PriceInput>
 
-          <StockInput onChange={(e) => setSelectStock(e.target.value)}>
-            <OptionTxt value="en stock">en Stock</OptionTxt>
-            <OptionTxt Value="rupture">rupture de stock</OptionTxt>
-          </StockInput>
-          <AdsInput onChange={(e) => setSelectPub(e.target.value)}>
-            <OptionTxt value="no pub">no pub</OptionTxt>
-            <OptionTxt value="pub">pub</OptionTxt>
-          </AdsInput>
-        </SubInputsWrapper>
-        <Button HandleSumbit={() => PushNewProduct() + ClearField()} buttonUtility={"  Ajouter un nouveau produit au menu"} customSize={"150"}/>
-        
-    
-      </InputsWrapper>
-    </AdminPannelWrapper>
+            <StockInput onChange={(e) => setSelectStock(e.target.value)}>
+              <OptionTxt> - Selectionner catégorie :</OptionTxt>
+              <OptionTxt value="Burger">Burger</OptionTxt>
+              <OptionTxt Value="Boisson">Boisson</OptionTxt>
+              <OptionTxt Value="Dessert">Dessert</OptionTxt>
+            </StockInput>
+            <AdsInput onChange={(e) => setSelectPub(e.target.value)}>
+              <OptionTxt> nouveau produit ?</OptionTxt>
+              <OptionTxt value="no pub">oui</OptionTxt>
+              <OptionTxt value="pub">non</OptionTxt>
+            </AdsInput>
+          </SubInputsWrapper>
+          <Button
+            HandleSumbit={() => PushNewProduct() /* + ClearField() */}
+            buttonUtility={'  Ajouter un nouveau produit au menu'}
+            customSize={'150'}
+          />
+        </InputsWrapper>
+     {  hidePannel=== "240px" ? <MsgAdminActive /> : null}
+      </AdminPannelWrapper>
+    </>
   );
 }
 

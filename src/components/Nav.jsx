@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import AdminButton from './AdminButton';
+import { NavLink as BaseNavLink } from "react-router-dom";
 
 const NavWrapper = styled.div`
   text-align: center;
@@ -28,7 +29,7 @@ const LiNav = styled.li`
   }
 `;
 
-const NavLink = styled(Link)`
+const NavLink = styled(BaseNavLink)`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -38,6 +39,10 @@ const NavLink = styled(Link)`
   text-decoration: none;
   color: black;
   border: 0.1px solid lightgrey;
+  &.active {
+    background-color: #de8604;
+    border: 1px solid black;
+  }
 `
 
 const Selected = styled(Link)`
@@ -45,13 +50,13 @@ background-color: red;
 `
 
 
-export default function Nav() {
+export default function Nav(props) {
 
   return (
     <NavWrapper>
       <UlNav>
         <LiNav >
-          <NavLink to="/Burgers" className={({isActive})=> isActive ? Selected : ""}>Burgers</NavLink>
+          <NavLink to="/Burgers" onClick={() => console.log("hello")}>Burgers</NavLink>
         </LiNav>
         <LiNav>
           <NavLink to="/Pizza">Pizza</NavLink>
@@ -60,7 +65,7 @@ export default function Nav() {
           <NavLink to="/Drinks">Drinks</NavLink>
         </LiNav>
       </UlNav>
-      <AdminButton />
+      <AdminButton setIsPannelAdminShowed={props.setIsPannelAdminShowed}/>
     </NavWrapper>
   );
 }

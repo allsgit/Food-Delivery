@@ -60,6 +60,7 @@ const CartItemQuantity = styled.p`
 
 export default function CartAddedProductCard(props) {
   const cart = props.cart;
+ 
 
 
   const deleteItemFromCart = (id) => {
@@ -70,7 +71,7 @@ export default function CartAddedProductCard(props) {
   };
 
   return (
-    <CartItemAddedWrapper key={3}>
+    <CartItemAddedWrapper key={3} >
       <ImgWrapper>
         <CartItemImg src={props.image}></CartItemImg>
       </ImgWrapper>

@@ -20,6 +20,7 @@ export default function MainContent(props) {
         setCart={props.setCart}
         cart={props.cart}
         cartValue={props.cartValue}
+        isPannelAdminShowed={props.isPannelAdminShowed}
       />
       <SideCart
         cart={props.cart}
@@ -30,6 +31,9 @@ export default function MainContent(props) {
       <AdminPannel
         setBurgerlist={props.setBurgerlist}
         burgerList={props.burgerList}
+        isPannelAdminShowed={props.isPannelAdminShowed}
+    
+  
       />
     </MainwWrapper>
   );

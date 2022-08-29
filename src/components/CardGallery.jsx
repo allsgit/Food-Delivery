@@ -23,6 +23,7 @@ export default function CardGallery(props) {
               key={burgers.id}
               burgerList={props.burgerList}
               setBurgerlist={props.setBurgerlist}
+              isPannelAdminShowed={props.isPannelAdminShowed}
 
             />
           </>
