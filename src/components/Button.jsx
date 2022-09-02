@@ -36,7 +36,7 @@ const BaseButton = styled.button`
     z-index: -1;
     content: '';
     background-color: ${(props) => (props.customHover ? props.customHover : 'orange')};
-    height: 40px;
+    height: 90px;
     width: 290px;
   }
   &:hover {
@@ -46,6 +46,7 @@ const BaseButton = styled.button`
     }
   }
 `;
+// *! Button is reusable handle props to do it //
 
 export default function Button(props) {
   return (

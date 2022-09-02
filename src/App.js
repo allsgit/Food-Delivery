@@ -1,10 +1,12 @@
 import './App.css';
-import TopBar from './components/TopBar';
-import MainContent from './components/MainContent';
-import Nav from './components/Nav';
+
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-
+import { Route, Routes } from 'react-router-dom';
+import Home from './components/Home';
+import HomeLoginPage from './components/HomeLoginPage';
+import PaymentPage from './components/PaymentPage';
+import StripeContainer from './components/stripe/StripeContainer';
 function App() {
   const [burgerList, setBurgerlist] = useState([
     {
@@ -43,25 +45,54 @@ function App() {
       id: uuidv4(),
       stock: 'rupture',
     },
+    {
+      name: 'Grande Fritte',
+      ingredient: '300gr',
+      price: 4,
+      image:
+        'https://eu-images.contentstack.com/v3/assets/blt5004e64d3579c43f/blt130eb8978cc923bf/615db7e9b084d018488c0a1e/3010.jpg?auto=webp',
+      id: uuidv4(),
+      stock: 'rupture',
+    },
+    {
+      name: 'Coca-Cola XL',
+      ingredient: '50cl',
+      price: 3.4,
+      image:
+        'https://www.mcdonalds.com/is/image/content/dam/ch/nutrition/nfl-product/product/regular/t-mcdonalds-coca-cola-medium.jpg?$Category_Desktop$ ',
+      id: uuidv4(),
+      stock: 'rupture',
+    },
   ]);
   const [cart, setCart] = useState([]);
   const [cartValue, setCartValue] = useState(0);
-  const [isPannelAdminShowed, setIsPannelAdminShowed] = useState(false)
-console.log(isPannelAdminShowed)
+  const [isPannelAdminShowed, setIsPannelAdminShowed] = useState(false);
+
   return (
     <div className="App">
-  
-      <TopBar />
-      <Nav setIsPannelAdminShowed={setIsPannelAdminShowed}/>
-      <MainContent
-        burgerList={burgerList}
-        setBurgerlist={setBurgerlist}
-        cart={cart}
-        setCart={setCart}
-        cartValue={cartValue}
-        setCartValue={setCartValue}
-        isPannelAdminShowed={isPannelAdminShowed}
-      />
+      <Routes>
+        <Route
+          path="/order"
+          element={
+            <Home
+              burgerList={burgerList}
+              setBurgerlist={setBurgerlist}
+              cart={cart}
+              setCart={setCart}
+              cartValue={cartValue}
+              setCartValue={setCartValue}
+              isPannelAdminShowed={isPannelAdminShowed}
+              setIsPannelAdminShowed={setIsPannelAdminShowed}
+            />
+          }
+        ></Route>
+        <Route
+          path="/Checkout"
+          element={<PaymentPage cartValue={cartValue} />}
+        ></Route>
+        <Route path="/CardInfoCheckout" element={<StripeContainer />}></Route>
+        <Route path="/" element={<HomeLoginPage />}></Route>
+      </Routes>
     </div>
   );
 }

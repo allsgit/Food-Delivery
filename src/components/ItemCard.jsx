@@ -108,13 +108,12 @@ export default function ItemCard(props) {
   const copyOfCart = [...props.cart];
   const burgerList = props.burgerList;
 
-  // ajouter élément au panier //
+  // *! Add element to cart //
   const AddItemToCart = (name, ingredient, price, image, id) => {
     copyOfCart.push({ name, ingredient, price, image, id });
     props.setCart(copyOfCart);
   };
-
-  // delete card from main content //
+  // *! delete card from main content //
   const deleteCard = (id) => {
     const filteredBurger = burgerList.filter((card) => {
       return card.id !== id;

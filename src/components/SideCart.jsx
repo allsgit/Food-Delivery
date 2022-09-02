@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import Button from './Button';
 import CardProductCart from './CardProductCart';
 import { keyframes } from 'styled-components';
-import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+
 
 const PriceChangeAnimation = keyframes`
 from{
@@ -13,8 +14,8 @@ from{
     transform: translateY(0px);
 opacity: 1;
 }
-
 `;
+
 
 const SideCartWrapper = styled.div`
   position: fixed;
@@ -73,7 +74,7 @@ export default function SideCart(props) {
   // virer props setCart et Cart car inutile //
   ///
   /// pour actualiser un state pour animation utiliser la props en key
-  let totalValue = props.cart.reduce((a, v) => (a = a + v.price), 0);
+  const totalValue = props.cart.reduce((a, v) => (a = a + v.price), 0);
   props.setCartValue(totalValue);
 
   const totalItemAdded = props.cart.length;
@@ -101,7 +102,7 @@ export default function SideCart(props) {
         €
       </div>
       <div className="totalAdded">{totalItemAdded} articles</div>
-      <Button buttonUtility={'Payer la commande'} style={{ padding: '10px' }} />
+      <Link to="/Checkout"><Button buttonUtility={'Payer la commande'} style={{ padding: '10px' }} /></Link>
     </SideCartWrapper>
   );
 }

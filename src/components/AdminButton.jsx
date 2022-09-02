@@ -10,6 +10,7 @@ position: relative;
   align-items: center;
   flex-direction: column;
   margin-right: 90px;
+ 
 `;
 const CheckBoxTxt = styled.p``;
 const Slider = styled.span`
@@ -21,6 +22,7 @@ const Slider = styled.span`
   height: 40px;
   background: ${(props) => props.ToogleSwitchBg};
   border-radius: 20px;
+  border: 1px solid black;
 `;
 const SliderInsideSwitch = styled.span`
   transition: 0.6s ease-in-out;
@@ -52,7 +54,7 @@ function AdminSwitchButton(props) {
   const HandleSwitchBtnAnimation = () => {
     if (ToogleAnimation === '0px') {
       SetToogleAnimation('260px');
-      SetToogleBgAnimation('#f69110');
+      SetToogleBgAnimation('lightgreen');
       SetToogleAnimationSlider('black');
       SetAdminActived('Mode Admin Activé');
       // show admin pannel props source from main.component

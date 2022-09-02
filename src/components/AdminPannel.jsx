@@ -29,7 +29,6 @@ const AdminPannelWrapper = styled.div`
   border-radius: 0 0 10px 0;
   box-shadow: 8px 2px 20px 1px rgba(0, 0, 0, 0.22);
   animation: 0.9s ${showPannelAdminAnim};
-  
 `;
 const MenuTabAdd = styled.span`
   position: absolute;
@@ -154,7 +153,8 @@ function AdminPannel(props) {
   const [imgPreview, setImgPreview] = useState(ImgPreviewForCard);
   const copyOfBurgerList = [...props.burgerList];
 
-  // push new product to sale dashboard from admin input pannel
+
+  // * push new product to sale dashboard from admin input pannel
   const PushNewProduct = () => {
     copyOfBurgerList.push({
       name: nameRef.current.value,
@@ -185,7 +185,7 @@ function AdminPannel(props) {
     ingredientsRef.current.value = '';
     priceRef.current.value = '';
   };
-console.log(props.burgerList);
+
   return (
     <>
       <AdminPannelWrapper
@@ -193,7 +193,7 @@ console.log(props.burgerList);
         isPannelAdminShowed={props.isPannelAdminShowed}
       >
         <MenuTabAdd>Ajouter un produit</MenuTabAdd>
-        <MenuTabModify>Modifier un produit</MenuTabModify>
+     {/*    <MenuTabModify>Modifier un produit</MenuTabModify> */}
         <MenuHide
           onClick={() => {
             hidePannel === '0px'
@@ -240,7 +240,9 @@ console.log(props.burgerList);
             customSize={'150'}
           />
         </InputsWrapper>
-     {  hidePannel=== "240px" ? <MsgAdminActive /> : null}
+        {props.isPannelAdminShowed === false ? null : (
+          <MsgAdminActive />
+        )}
       </AdminPannelWrapper>
     </>
   );

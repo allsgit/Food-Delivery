@@ -25,15 +25,17 @@ const HidePannelAdminAnim = keyframes`
 const HighLightTxt = keyframes`
 
  0% {
-   transform: translate(10px);
+   transform: translateY(-4px);
 } 100% { 
-  transform: translate(0px);
+  transform: translateY(0px);
 }
 
 `;
 const PannelMsg = styled.p`
+text-align: center;
+  animation: 0.4s ${HighLightTxt} alternate infinite;
+`;
 
-animation:0.6s ${HighLightTxt} alternate infinite`;
 const MsgBlockWrapper = styled.div`
   padding: 10px;
   position: absolute;
@@ -45,7 +47,6 @@ const MsgBlockWrapper = styled.div`
   width: 200px;
   height: 50px;
   background-color: lightgray;
-  transform: translate(300px);
   border-radius: 5px;
   animation: 1s ${ShowPannelAdminAnim} forwards,
     1.3s ${HidePannelAdminAnim} forwards;
@@ -72,11 +73,10 @@ const TimerBar = styled.span`
     animation-delay: 1.2s;
   }
 `;
-
 export default function MsgAdminActive() {
   return (
     <MsgBlockWrapper>
-      <PannelMsg>PANNEL ADMIN ACTIVÉ</PannelMsg>
+      <PannelMsg>Pannel admin activé</PannelMsg>
       <TimerBar></TimerBar>
     </MsgBlockWrapper>
   );

@@ -7,11 +7,12 @@ import { NavLink as BaseNavLink } from "react-router-dom";
 const NavWrapper = styled.div`
   text-align: center;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   width: 80%;
-  height: 70px;
-  background-color: #fff;
+  height: auto;
+  padding: 5px 0;
+  background-color: orange;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 `;
 const UlNav = styled.ul`
@@ -54,7 +55,7 @@ export default function Nav(props) {
 
   return (
     <NavWrapper>
-      <UlNav>
+{/*       <UlNav>
         <LiNav >
           <NavLink to="/Burgers" onClick={() => console.log("hello")}>Burgers</NavLink>
         </LiNav>
@@ -64,7 +65,7 @@ export default function Nav(props) {
         <LiNav>
           <NavLink to="/Drinks">Drinks</NavLink>
         </LiNav>
-      </UlNav>
+      </UlNav> */}
       <AdminButton setIsPannelAdminShowed={props.setIsPannelAdminShowed}/>
     </NavWrapper>
   );
