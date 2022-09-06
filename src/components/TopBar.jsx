@@ -18,7 +18,6 @@ export default function TopBar() {
   return (
     <TopBarWrapper>
       <Logo />
-   
       <IconProfil />
     </TopBarWrapper>
   );

@@ -153,6 +153,8 @@ function AdminPannel(props) {
   const [imgPreview, setImgPreview] = useState(ImgPreviewForCard);
   const copyOfBurgerList = [...props.burgerList];
 
+  
+
 
   // * push new product to sale dashboard from admin input pannel
   const PushNewProduct = () => {

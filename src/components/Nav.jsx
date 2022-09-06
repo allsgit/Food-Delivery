@@ -55,17 +55,6 @@ export default function Nav(props) {
 
   return (
     <NavWrapper>
-{/*       <UlNav>
-        <LiNav >
-          <NavLink to="/Burgers" onClick={() => console.log("hello")}>Burgers</NavLink>
-        </LiNav>
-        <LiNav>
-          <NavLink to="/Pizza">Pizza</NavLink>
-        </LiNav>
-        <LiNav>
-          <NavLink to="/Drinks">Drinks</NavLink>
-        </LiNav>
-      </UlNav> */}
       <AdminButton setIsPannelAdminShowed={props.setIsPannelAdminShowed}/>
     </NavWrapper>
   );

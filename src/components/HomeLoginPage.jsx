@@ -1,8 +1,16 @@
 import React from 'react';
+import { initializeApp } from 'firebase/app';
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from 'firebase/auth';
 import { Link } from 'react-router-dom';
 import BurgerBackgroundImg from './assets/images/backgroundBurger.jpeg';
 import styled from 'styled-components';
 import imgmock from './assets/images/Burger stall logo - Fait avec PosterMyWall.png';
+import { useRef, useState, useContext } from 'react';
+import { UserContext } from './Context/userContext';
 
 const HomePageWrapper = styled.div`
   display: flex;
@@ -53,7 +61,7 @@ const PasswordNameInput = styled(LoginNameInput)`
 `;
 
 const LoginSubmit = styled.button`
-  margin: 30px 0;
+  margin: 10px 0;
   height: 60px;
   width: 50%;
   border-radius: 10px;
@@ -102,7 +110,85 @@ const Separator = styled.span`
   border-radius: 5px;
 `;
 
+const ErrorMsgSign = styled.p`
+  font-size: 20px;
+  color: red;
+  z-index: 100;
+`;
+
 function HomeLoginPage() {
+  const [errorMsg, setErrorMsg] = useState('');
+  const passWordRef = useRef();
+  const emailRef = useRef();
+  const firebaseConfig = {
+    apiKey: 'AIzaSyA6a7jYguMMMenUGaQ7iXpGrcUQwD5Ch7k',
+    authDomain: 'food-delivery-de4d2.firebaseapp.com',
+    projectId: 'food-delivery-de4d2',
+    storageBucket: 'food-delivery-de4d2.appspot.com',
+    messagingSenderId: '161796174047',
+    appId: '1:161796174047:web:3735594e449fea685a796a',
+  };
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  const { setIsAuth } = useContext(UserContext);
+  const { setAuthInfo } = useContext(UserContext);
+
+  //*signUp and SignIn FirebaseMethod
+  const signUp = () => {
+    console.log(emailRef.current.value);
+    createUserWithEmailAndPassword(
+      auth,
+      emailRef.current.value,
+      passWordRef.current.value
+    )
+      .then((userCredential) => {
+        const user = userCredential.user;
+        setErrorMsg('Inscription validé, vous pouvez vous connecter');
+        setAuthInfo(auth);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+
+        if (errorMessage === 'Firebase: Error (auth/invalid-email).') {
+          setErrorMsg('email invalide ou manquant');
+        } else if (errorCode === 'auth/missing-email') {
+          setErrorMsg('email manquant');
+        } else if (errorCode === 'auth/weak-password') {
+          setErrorMsg(
+            'Votre mot de passe doit contenir 6 caractères au minimum'
+          );
+        } else if (errorCode === 'auth/internal-error') {
+          setErrorMsg('mot de passe manquant');
+        }
+
+        // ..
+      });
+  };
+  const signIn = (e) => {
+    signInWithEmailAndPassword(
+      auth,
+      emailRef.current.value,
+      passWordRef.current.value
+    )
+      .then((userCredential) => {
+        setIsAuth(true);
+        const user = userCredential.user;
+        console.log(user);
+        setErrorMsg('loggin correct ! ');
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        setIsAuth(false);
+        if (errorCode === 'auth/invalid-email') {
+          setErrorMsg('veuillez entrer vos identifiants');
+        }
+        // ..
+      });
+  };
+
   return (
     <HomePageWrapper>
       <BackImg src={BurgerBackgroundImg}></BackImg>
@@ -114,13 +200,24 @@ function HomeLoginPage() {
         <LoginNameInput
           placeholder="Veuillez entrer votre adresse email..."
           type="email"
+          ref={emailRef}
         ></LoginNameInput>
-        <LoginSubmit>
-          <Link to="/order">Connection</Link>
+        <LogTxt>Votre mot de passe</LogTxt>
+        <LoginNameInput
+          placeholder="Veuillez entrer votre mot de passe..."
+          type="email"
+          ref={passWordRef}
+        ></LoginNameInput>
+        <LoginSubmit onClick={() => signIn()}>
+          <Link to="/LoggedOrder/Order">Connection</Link>
         </LoginSubmit>
+        <LoginSubmit onClick={() => signUp()}>inscription</LoginSubmit>
+        <ErrorMsgSign>{errorMsg}</ErrorMsgSign>
       </InputWrapper>
     </HomePageWrapper>
   );
 }
+// ooooooopopopop
 
+// dddd@gmail.com
 export default HomeLoginPage;

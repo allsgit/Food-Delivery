@@ -4,7 +4,7 @@ import BackgroundFiller from './assets/images/backgroundBurger.jpeg';
 import Button from './Button';
 import BackToArrow from './assets/images/icons8-back-to-90.png';
 import { Link } from 'react-router-dom';
-import stripeContainer from './stripe/StripeContainer';
+import stripeContainer from './services/stripe/StripeContainer'
 
 const MainWrapper = styled.div`
   width: 100vw;
