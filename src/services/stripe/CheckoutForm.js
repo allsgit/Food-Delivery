@@ -1,9 +1,20 @@
 import React from 'react';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import axios from 'axios';
-import Button from '../../Button';
+import Button from '../../components/Button';
+import styled from 'styled-components';
+
+const Wrapper = styled.div`
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 export default function CheckoutForm() {
+  const stopButton = (e) => {
+    e.preventDefault();
+  };
   const stripe = useStripe();
   const elements = useElements();
 
@@ -14,17 +25,18 @@ export default function CheckoutForm() {
       card: elements.getElement(CardElement),
     });
     if (!error) {
-      console.log('token généré: ', paymentMethod);
     }
   };
   return (
-    <form onSubmit={SubmitPayment()} style={{ maxwidth: 400 }}>
-      <CardElement
-        options={{
-          hidePostalCode: true,
-        }}
-      />
-      <Button HandleSumbit={(e) => e} buttonUtility={'Payer La commande'} />
+    <form onSubmit={SubmitPayment()} style={{ maxwidth: 100 }}>
+
+        <CardElement
+          options={{
+            hidePostalCode: true,
+          }}
+        />
+
+      <Button HandleSumbit={(e) => e} buttonUtility={(e) => stopButton(e)} />
     </form>
   );
 }

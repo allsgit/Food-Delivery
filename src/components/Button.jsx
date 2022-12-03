@@ -1,14 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { keyframes } from 'styled-components';
 
-const ButtonAnimationHover = keyframes`
-from{
-
-} to {
-
-}
-`;
 
 const BaseButton = styled.button`
   position: relative;
@@ -23,10 +15,6 @@ const BaseButton = styled.button`
   overflow: hidden;
   transition: 0.1s;
   padding: 7px;
-  &:active {
-    transform: scale(0.9);
-  }
-
   ::before {
     transition: 0.2s;
     transform: translateY(50px);

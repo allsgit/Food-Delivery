@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import Logo from './Logo';
-import IconProfil from './IconProfil';
-import AdminButton from "./AdminButton"
+import IconProfil from '../navigation/IconProfil';
+
 const TopBarWrapper = styled.div`
   position: relative;
   width: 80%;

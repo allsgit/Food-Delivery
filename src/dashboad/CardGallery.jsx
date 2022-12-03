@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import ItemCard from './ItemCard';
-import { v4 as uuidv4 } from 'uuid';
+import ItemCard from '../components/ItemCard';
 
 const GalleryWrapper = styled.div`
   width: 80%;
@@ -15,18 +14,16 @@ export default function CardGallery(props) {
     <GalleryWrapper>
       {props.burgerList.map((burgers) => {
         return (
-          <>
+          <div key={burgers.id}>
             <ItemCard
               burgers={burgers}
               setCart={props.setCart}
               cart={props.cart}
-              key={burgers.id}
               burgerList={props.burgerList}
               setBurgerlist={props.setBurgerlist}
               isPannelAdminShowed={props.isPannelAdminShowed}
-
             />
-          </>
+          </div>
         );
       })}
     </GalleryWrapper>

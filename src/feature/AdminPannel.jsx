@@ -1,11 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import { keyframes } from 'styled-components';
-import { useRef, useState, useEff } from 'react';
-import { v4 as uuidv4 } from 'uuid';
-import Button from './Button';
-import ImgPreviewForCard from './assets/images/image-preview.png';
-import MsgAdminActive from './MsgAdminActive';
+import { useRef, useState, useEffect } from 'react';
+import { DataContext } from '../Context/dataContext';
+import { useContext } from 'react';
+import { collection, getDocs, addDoc } from 'firebase/firestore';
+import { db } from '../services/firebase/firebase.config';
+import Button from '../components/Button';
+import ImgPreviewForCard from '../assets/images/image-preview.png';
+import MsgAdminActive from '../components/MsgAdminActive';
 
 // ANIMATIONS //
 
@@ -13,8 +16,8 @@ const showPannelAdminAnim = keyframes`
  0% { transform: translateY(600px) }
  100% { transform: translate(0) }
 `;
-// STYLED COMPONENTS
 
+// STYLED COMPONENTS
 const AdminPannelWrapper = styled.div`
   display: ${(props) => (props.isPannelAdminShowed === true ? 'flex' : 'none')};
   transition: 0.6s;
@@ -54,7 +57,6 @@ const MenuHide = styled(MenuTabAdd)`
   font-weight: bold;
   cursor: pointer;
 `;
-
 const InputsWrapper = styled.div`
   overflow: hidden;
   width: 50%;
@@ -65,7 +67,6 @@ const InputsWrapper = styled.div`
   align-items: flex-start;
   margin-right: 270px;
 `;
-
 const ItemInput = styled.input`
   width: 100%;
   height: 40px;
@@ -82,7 +83,6 @@ const SubInputsWrapper = styled.div`
   display: flex;
   justify-content: center;
 `;
-
 const ProductImg = styled.img`
   width: 180px;
   height: 90%;
@@ -95,11 +95,10 @@ const ProductImg = styled.img`
   object-fit: contain;
   animation: 0.2s ${showPannelAdminAnim};
 `;
-
 const PriceInput = styled.input`
   margin: 0 2px;
   height: 40px;
-  width: 100%;
+  width: 40%;
   border-radius: 3px;
   border: 0.2px solid grey;
   padding: 0 0 0 10px;
@@ -126,49 +125,71 @@ const StockInput = styled.select`
   border: 0.2px solid grey;
 `;
 const AdsInput = styled(StockInput)`
-  width: 140px;
+  width: 60%;
 `;
-const SubmitBtn = styled.button`
-  width: 70%;
-  height: 40px;
-  background: green;
-  border: none;
-  border-radius: 5px;
-  margin: 8px 0 0 0;
-  color: white;
-  &:active {
-    transform: scale(0.8);
-  }
-`;
+
 const OptionTxt = styled.option``;
 
 function AdminPannel(props) {
   const nameRef = useRef();
   const priceRef = useRef();
   const imgRef = useRef();
+  const pubRef = useRef();
   const ingredientsRef = useRef();
   const [selectStock, setSelectStock] = useState('en stock');
-  const [selectPub, setSelectPub] = useState('no pub');
   const [hidePannel, setHidePannel] = useState('240px');
   const [imgPreview, setImgPreview] = useState(ImgPreviewForCard);
-  const copyOfBurgerList = [...props.burgerList];
-
-  
-
+  const [addItemValue, setaddItemValue] = useState([]);
+  const { setBurgerlist, deleteItemFromDb, selectPub, setSelectPub } = useContext(DataContext);
+  const ItemCollection = collection(db, 'Items');
 
   // * push new product to sale dashboard from admin input pannel
-  const PushNewProduct = () => {
-    copyOfBurgerList.push({
+  const addNewProduct = () => {
+    addItemValue.push({
       name: nameRef.current.value,
       price: parseFloat(priceRef.current.value),
       image: imgRef.current.value,
       stock: selectStock,
       pub: selectPub,
       ingredient: ingredientsRef.current.value,
-      id: uuidv4(),
     });
-    props.setBurgerlist(copyOfBurgerList);
+    pushNewProductToDb();
+    ClearField();
   };
+
+  function pushNewProductToDb() {
+    addItemValue.map((el) => {
+      const addItemOnDb = async () => {
+        try {
+          const docRef = await addDoc(collection(db, 'Items'), {
+            name: el.name,
+            price: el.price,
+            image: el.image,
+            ingredient: el.ingredient,
+            pub: el.pub,
+          });
+          console.log('Document written with ID: ', docRef.id);
+        } catch (e) {
+          console.error('Error adding document: ', e);
+        }
+      };
+      addItemOnDb();
+      setaddItemValue([]);
+    });
+  }
+
+  const showItems = useEffect(() => {
+    const getItem = async () => {
+      const data = await getDocs(ItemCollection);
+      setBurgerlist(
+        data.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }))
+      );
+    };
+    getItem();
+  }, [addItemValue, deleteItemFromDb]);
 
   // CHECK IF INPUT CONTAINT HTTP LINK TO IMAGE
   const imgCheckerToDisplayPreview = (e) => {
@@ -187,20 +208,14 @@ function AdminPannel(props) {
     ingredientsRef.current.value = '';
     priceRef.current.value = '';
   };
-
   return (
     <>
-      <AdminPannelWrapper
-        size={hidePannel}
-        isPannelAdminShowed={props.isPannelAdminShowed}
-      >
+      <AdminPannelWrapper size={hidePannel} isPannelAdminShowed={props.isPannelAdminShowed}>
         <MenuTabAdd>Ajouter un produit</MenuTabAdd>
-     {/*    <MenuTabModify>Modifier un produit</MenuTabModify> */}
+        {/*    <MenuTabModify>Modifier un produit</MenuTabModify> */}
         <MenuHide
           onClick={() => {
-            hidePannel === '0px'
-              ? setHidePannel('240px')
-              : setHidePannel('0px');
+            hidePannel === '0px' ? setHidePannel('240px') : setHidePannel('0px');
           }}
         >
           reduire V
@@ -209,42 +224,25 @@ function AdminPannel(props) {
         <InputsWrapper>
           <ItemInput placeholder="Nom du produit" ref={nameRef}></ItemInput>
           <ItemInputImg
-            placeholder="insérer l'url de l'image"
+            placeholder="insérer/coller l'url de l'image"
             ref={imgRef}
             onChange={(e) => {
               imgCheckerToDisplayPreview(e);
             }}
           ></ItemInputImg>
-
-          <IngredientsInput
-            placeholder="ingrédients"
-            ref={ingredientsRef}
-          ></IngredientsInput>
+          <IngredientsInput placeholder="ingrédients, poids, contenance" ref={ingredientsRef}></IngredientsInput>
 
           <SubInputsWrapper>
             <PriceInput placeholder="prix" ref={priceRef}></PriceInput>
-
-            <StockInput onChange={(e) => setSelectStock(e.target.value)}>
-              <OptionTxt> - Selectionner catégorie :</OptionTxt>
-              <OptionTxt value="Burger">Burger</OptionTxt>
-              <OptionTxt Value="Boisson">Boisson</OptionTxt>
-              <OptionTxt Value="Dessert">Dessert</OptionTxt>
-            </StockInput>
             <AdsInput onChange={(e) => setSelectPub(e.target.value)}>
               <OptionTxt> nouveau produit ?</OptionTxt>
-              <OptionTxt value="no pub">oui</OptionTxt>
-              <OptionTxt value="pub">non</OptionTxt>
+              <OptionTxt value="pub">oui</OptionTxt>
+              <OptionTxt value="no pub">non</OptionTxt>
             </AdsInput>
           </SubInputsWrapper>
-          <Button
-            HandleSumbit={() => PushNewProduct() /* + ClearField() */}
-            buttonUtility={'  Ajouter un nouveau produit au menu'}
-            customSize={'150'}
-          />
+          <Button HandleSumbit={() => addNewProduct()} buttonUtility={'  Ajouter un nouveau produit au menu'} customSize={'150'} />
         </InputsWrapper>
-        {props.isPannelAdminShowed === false ? null : (
-          <MsgAdminActive />
-        )}
+        {props.isPannelAdminShowed === false ? null : <MsgAdminActive />}
       </AdminPannelWrapper>
     </>
   );

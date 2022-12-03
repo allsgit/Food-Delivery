@@ -1,16 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useState } from 'react';
-
-
+import { useState, useContext } from 'react';
+import { UserContext } from '../Context/userContext';
 
 const CheckBoxWrapper = styled.div`
-position: relative;
+  position: relative;
   display: flex;
   align-items: center;
   flex-direction: column;
   margin-right: 90px;
- 
 `;
 const CheckBoxTxt = styled.p``;
 const Slider = styled.span`
@@ -48,8 +46,7 @@ function AdminSwitchButton(props) {
   const [ToogleBgAnimation, SetToogleBgAnimation] = useState('#d4d4d4');
   const [AdminActived, SetAdminActived] = useState('Activer mode admin');
   const [ToogleAnimationSlider, SetToogleAnimationSlider] = useState('white');
-
-  
+  const { currentUser } = useContext(UserContext);
 
   const HandleSwitchBtnAnimation = () => {
     if (ToogleAnimation === '0px') {
@@ -58,35 +55,29 @@ function AdminSwitchButton(props) {
       SetToogleAnimationSlider('black');
       SetAdminActived('Mode Admin Activé');
       // show admin pannel props source from main.component
-      props.setIsPannelAdminShowed(true); 
+      props.setIsPannelAdminShowed(true);
     } else {
       SetToogleAnimation('0px');
       SetToogleBgAnimation('#d4d4d4');
       SetToogleAnimationSlider('white');
       SetAdminActived('Activer mode admin');
       // show admin pannel props source from main.component
-     props.setIsPannelAdminShowed(false);
- }
-
+      props.setIsPannelAdminShowed(false);
+    }
   };
   return (
     <>
-      
-    <CheckBoxWrapper>
-      <LabelSwich>
-        <Slider ToogleSwitchBg={ToogleBgAnimation}>
-          <CheckBoxItem
-            type="checkbox"
-            onClick={HandleSwitchBtnAnimation}
-          ></CheckBoxItem>
-          <SliderInsideSwitch
-            ToogleSwitch={ToogleAnimation}
-            ToogleAnimationSlider={ToogleAnimationSlider}
-          ></SliderInsideSwitch>
-          <CheckBoxTxt>{AdminActived}</CheckBoxTxt>
-        </Slider>
-      </LabelSwich>
-    </CheckBoxWrapper>
+      {currentUser.email === 'admin@food.com' && (
+        <CheckBoxWrapper>
+          <LabelSwich>
+            <Slider ToogleSwitchBg={ToogleBgAnimation}>
+              <CheckBoxItem type="checkbox" onClick={HandleSwitchBtnAnimation}></CheckBoxItem>
+              <SliderInsideSwitch ToogleSwitch={ToogleAnimation} ToogleAnimationSlider={ToogleAnimationSlider}></SliderInsideSwitch>
+              <CheckBoxTxt>{AdminActived}</CheckBoxTxt>
+            </Slider>
+          </LabelSwich>
+        </CheckBoxWrapper>
+      )}
     </>
   );
 }

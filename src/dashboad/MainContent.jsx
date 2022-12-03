@@ -1,8 +1,8 @@
 import React from 'react';
-import SideCart from './SideCart';
+import SideCart from '../feature/SideCart';
 import CardGallery from './CardGallery';
 import styled from 'styled-components';
-import AdminPannel from './AdminPannel';
+import AdminPannel from '../feature/AdminPannel';
 
 const MainwWrapper = styled.div`
   position: relative;
@@ -22,18 +22,12 @@ export default function MainContent(props) {
         cartValue={props.cartValue}
         isPannelAdminShowed={props.isPannelAdminShowed}
       />
-      <SideCart
-        cart={props.cart}
-        setCart={props.setCart}
-        cartValue={props.cartValue}
-        setCartValue={props.setCartValue}
-      />
+      <SideCart cart={props.cart} setCart={props.setCart} cartValue={props.cartValue} setCartValue={props.setCartValue} />
       <AdminPannel
+        pushNewProductToDb={props.pushNewProductToDb}
         setBurgerlist={props.setBurgerlist}
         burgerList={props.burgerList}
         isPannelAdminShowed={props.isPannelAdminShowed}
-    
-  
       />
     </MainwWrapper>
   );

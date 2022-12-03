@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import BackgroundFiller from './assets/images/backgroundBurger.jpeg';
+import BackgroundFiller from '../assets/images/backgroundBurger.jpeg';
 import Button from './Button';
-import BackToArrow from './assets/images/icons8-back-to-90.png';
+import BackToArrow from '../assets/images/icons8-back-to-90.png';
 import { Link } from 'react-router-dom';
-import stripeContainer from './services/stripe/StripeContainer'
+import { UserContext } from '../Context/userContext';
+import { useContext } from 'react';
 
 const MainWrapper = styled.div`
   width: 100vw;
@@ -47,7 +48,6 @@ const TitleOrder = styled.h1`
   text-align: center;
   width: 60%;
 `;
-
 const CheckoutWrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -59,12 +59,14 @@ const TotalCheckout = styled.p`
 `;
 
 export default function PaymentPage(props) {
+  const { cartValue } = useContext(UserContext);
+  console.log(cartValue);
   return (
     <MainWrapper>
       <BackgroundImg src={BackgroundFiller}></BackgroundImg>
 
       <InputWrapper>
-        <Link to="/order">
+        <Link to="/private/Order">
           <BackToHome src={BackToArrow}></BackToHome>
         </Link>
         <TitleOrder>
@@ -76,12 +78,9 @@ export default function PaymentPage(props) {
         <OrderInfoInput placeholder="Mail"></OrderInfoInput>
         <OrderInfoInput placeholder="Teléphone"></OrderInfoInput>
         <CheckoutWrapper>
-          <TotalCheckout>Total commande: {props.cartValue.toFixed(2)} €</TotalCheckout>
-          <Link to="/CardInfoCheckout">
-            <Button
-              HandleSumbit={(e) => {}}
-              buttonUtility={'Payer La commande'}
-            />
+          <TotalCheckout>Total commande: {cartValue.toFixed(2)} €</TotalCheckout>
+          <Link to="/private/checkout/paiement">
+            <Button HandleSumbit={(e) => {}} buttonUtility={'Payer La commande'} />
           </Link>
         </CheckoutWrapper>
       </InputWrapper>

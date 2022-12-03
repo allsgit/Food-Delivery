@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import { getAuth, signOut } from "firebase/auth";
+import { UserContext } from '../Context/userContext';
+import { useContext } from 'react';
 
 const IconProfilWrapper = styled.div`
   width: 70px;
@@ -17,29 +17,25 @@ const ProfilInfoWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-`;
-const ProfilName = styled.p`
-  margin-right: 0;
-  width: 200px;
+  .hello-user {
+    margin-right: 0;
+    width: 200px;
+  }
 `;
 
-const LogginLogout = styled.p`
-  margin-right: 5px;
-  font-size: 13px;
-  margin: 0;
-`;
 function IconProfil() {
+  const { logOut } = useContext(UserContext);
+
   return (
     <>
       <ProfilInfoWrapper>
         <div>
-          <ProfilName>Bonjour !</ProfilName>
-          <LogginLogout>
-            <Link to="/">Se deconnecter</Link>
-          </LogginLogout>
+          <p className="hello-user">Bonjour !</p>
+          <button className="logout-button" onClick={logOut}>
+            Se deconnecter
+          </button>
         </div>
       </ProfilInfoWrapper>
-    
     </>
   );
 }

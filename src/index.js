@@ -3,14 +3,17 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
-import { UserContextProvider } from 'components/Context/userContext';
+import { UserContextProvider } from 'Context/userContext';
+import { DataContextProvider } from 'Context/dataContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
     <React.StrictMode>
       <UserContextProvider>
-        <App />
+        <DataContextProvider>
+          <App />
+        </DataContextProvider>
       </UserContextProvider>
     </React.StrictMode>
   </BrowserRouter>
