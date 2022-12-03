@@ -4,7 +4,7 @@ import Button from '../components/Button';
 import CardProductCart from '../components/CardProductCart';
 import { keyframes } from 'styled-components';
 import { Link } from 'react-router-dom';
-import { UserContext } from '../Context/userContext';
+import { DataContext } from '../Context/dataContext';
 import { useContext } from 'react';
 import { useEffect } from 'react';
 
@@ -67,7 +67,7 @@ const TotalPrice = styled.p`
 const TotalProduct = styled.p``;
 
 export default function SideCart(props) {
-  const { cartValue, setCartValue } = useContext(UserContext);
+  const { cartValue, setCartValue } = useContext(DataContext);
 
   // virer props setCart et Cart car inutile //
   ///
