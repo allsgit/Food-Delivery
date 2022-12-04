@@ -69,19 +69,14 @@ const TotalProduct = styled.p``;
 export default function SideCart(props) {
   const { cartValue, setCartValue } = useContext(DataContext);
 
-  // virer props setCart et Cart car inutile //
-  ///
-  /// pour actualiser un state pour animation utiliser la props en key
   const totalValue = props.cart.reduce((a, v) => (a = a + v.price), 0);
-  /*   props.setCartValue(totalValue); */ // context
 
   const totalItemAdded = props.cart.length;
 
+  /** Refresh total price of cart */
   useEffect(() => {
     setCartValue(totalValue);
   }, [totalValue]);
-
-  console.log(cartValue);
 
   return (
     <SideCartWrapper>

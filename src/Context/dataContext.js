@@ -2,11 +2,15 @@ import { createContext, useState, useEffect } from 'react';
 export const DataContext = createContext();
 
 export function DataContextProvider(props) {
+
+
+
   const [burgerList, setBurgerlist] = useState([]);
   const [addItemToDashboad, setaddItemToDashboad] = useState([]);
   const [deleteItemFromDb, setDeleteItemFromDb] = useState('');
   const [selectPub, setSelectPub] = useState('no pub');
   const [cartValue, setCartValue] = useState(0);
+  const [registerToogle, setRegisterToogle] = useState(false);
 
   return (
     <DataContext.Provider
@@ -21,6 +25,8 @@ export function DataContextProvider(props) {
         setSelectPub,
         cartValue,
         setCartValue,
+        registerToogle,
+        setRegisterToogle
       }}
     >
       {props.children}

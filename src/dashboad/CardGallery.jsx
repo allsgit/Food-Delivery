@@ -23,6 +23,7 @@ export default function CardGallery(props) {
               setBurgerlist={props.setBurgerlist}
               isPannelAdminShowed={props.isPannelAdminShowed}
             />
+    
           </div>
         );
       })}

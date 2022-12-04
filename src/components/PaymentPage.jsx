@@ -78,7 +78,7 @@ export default function PaymentPage(props) {
         <OrderInfoInput placeholder="Mail"></OrderInfoInput>
         <OrderInfoInput placeholder="Teléphone"></OrderInfoInput>
         <CheckoutWrapper>
-          <TotalCheckout>Total commande: {cartValue.toFixed(2)} €</TotalCheckout>
+          <TotalCheckout>Total commande: {"10"} €</TotalCheckout>
           <Link to="/private/checkout/paiement">
             <Button HandleSumbit={(e) => {}} buttonUtility={'Payer La commande'} />
           </Link>
