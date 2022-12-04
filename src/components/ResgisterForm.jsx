@@ -21,24 +21,43 @@ const RegisterWrapper = styled.form`
   transform: translate(-50%, -50%);
   border-radius: 10px;
   z-index: 10000;
+  .register-title {
+    color: #f2a832;
+    margin-bottom: 10px;
+    font-size: 23px;
+    z-index: 10;
+    margin: 10px 0;
+  }
   .submit {
-    background-color: #f2a832;
-    width: 200px;
-    height: auto;
-    border: none;
-    color: white;
-    padding: 10px;
+    margin: 10px 0;
+    height: 60px;
+    width: 50%;
     border-radius: 10px;
-    &:hover {
-      background-color: green;
+    border: none;
+    font-size: 20px;
+    z-index: 100;
+    transition: 0.1s;
+    background: #f2a832;
+    &:active {
+      transform: scale(0.98);
+      border: 1px solid black;
+      transform: translateX(3px);
     }
   }
   .email,
   .password {
-    margin: 10px;
-    border-radius: 8px;
-    width: 30%;
-    height: 10%;
+    text-align: center;
+    border-radius: 10px;
+    width: 50%;
+    margin-bottom: 10px;
+    height: 60px;
+    background: #F1F1F1;
+    z-index: 100;
+    font-size: 19px;
+    border: none;
+    &::placeholder {
+      font-size: 16px;
+    }
   }
   .arrow-temporaire {
     background-color: red;
@@ -63,7 +82,8 @@ export default function ResgisterForm() {
       setRegisterSuccess('inscription validé !! vous pouvez vous connecter');
       setTimeout(() => {
         navigate('/');
-        setRegisterToogle(true);
+        setRegisterToogle(false);
+        setRegisterSuccess('');
       }, 2000);
     } catch (err) {
       /*       setErrorMsg('Oops ! email et/ou mot de pass invalide'); */
@@ -75,7 +95,7 @@ export default function ResgisterForm() {
         <span className="arrow-temporaire" onClick={() => setRegisterToogle(false)}>
           retour
         </span>
-        Veuillez renseigner les champs pour valider votre inscription
+        <p className="register-title">Veuillez renseigner les champs pour valider votre inscription</p>
         <p className="email-txt">Email</p>
         <input type="text" className="email" ref={emailRef} />
         <p className="password-txt">password</p>
