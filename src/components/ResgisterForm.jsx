@@ -12,8 +12,8 @@ const RegisterWrapper = styled.form`
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  width: 50%;
-  height: 50%;
+  width: 80%;
+  height: 80%;
   background-color: white;
   opacity: 1;
   top: 50%;
@@ -46,7 +46,7 @@ const RegisterWrapper = styled.form`
   }
   .email,
   .password {
-    text-align: center;
+    padding: 0 0 0 10px;
     border-radius: 10px;
     width: 50%;
     margin-bottom: 10px;
@@ -99,7 +99,7 @@ export default function ResgisterForm() {
         <p className="email-txt">Email</p>
         <input type="text" className="email" ref={emailRef} />
         <p className="password-txt">password</p>
-        <input type="text" className="password" ref={passwordRef} />
+        <input type="password" className="password" ref={passwordRef} />
         <button className="submit" onClick={(e) => handleFormRegister(e)}>
           Inscription
         </button>

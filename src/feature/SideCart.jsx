@@ -8,6 +8,7 @@ import { DataContext } from '../Context/dataContext';
 import { useContext } from 'react';
 import { useEffect } from 'react';
 
+
 const PriceChangeAnimation = keyframes`
 from{
  opacity: 0;

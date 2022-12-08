@@ -8,6 +8,7 @@ import { Circles } from 'react-loader-spinner';
 import { useNavigate } from 'react-router-dom';
 import ResgisterForm from 'components/ResgisterForm';
 import { DataContext } from 'Context/dataContext';
+import Advices from 'components/Advices';
 
 const HomePageWrapper = styled.div`
   display: flex;
@@ -117,7 +118,6 @@ export default function LoginPage() {
 
   const { signUp, signIn, stayLog } = useContext(UserContext);
   const { registerToogle, setRegisterToogle } = useContext(DataContext);
-  console.log(registerToogle);
 
   const handleFormConnection = async (e) => {
     e.preventDefault();
@@ -134,6 +134,7 @@ export default function LoginPage() {
   };
   return (
     <>
+      <Advices />
       <BackImg src={BurgerBackgroundImg}></BackImg>
 
       <HomePageWrapper registerBlurToogle={registerToogle}>
@@ -166,7 +167,6 @@ export default function LoginPage() {
           )}
         </InputWrapper>
       </HomePageWrapper>
-      {console.log(registerToogle)}
 
       {registerToogle === true && <ResgisterForm registerBlurToogle={setRegisterToogle} />}
     </>

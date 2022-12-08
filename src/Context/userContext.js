@@ -10,12 +10,21 @@ import {
   browserSessionPersistence,
 } from 'firebase/auth';
 
+const StayLogFromLocalStorage = JSON.parse(localStorage.getItem('log') || '[]');
+
+
 export const UserContext = createContext();
 
 export function UserContextProvider(props) {
-  const [currentUser, setCurrentUser] = useState();
+  const [currentUser, setCurrentUser] = useState(StayLogFromLocalStorage);
   const [loadingData, setLoadingData] = useState();
   const auth = getAuth();
+  
+/* StayLog */
+  useEffect(() => {
+    localStorage.setItem('log', JSON.stringify(currentUser));
+  }, [currentUser]);
+
 
   const signUp = (email, pwd) => createUserWithEmailAndPassword(auth, email, pwd);
   const signIn = (email, pwd) => signInWithEmailAndPassword(auth, email, pwd);
@@ -55,6 +64,7 @@ export function UserContextProvider(props) {
         signIn,
         logOut,
         currentUser,
+        setCurrentUser,
         loadingData,
         stayLog,
       }}
