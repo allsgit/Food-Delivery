@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Food-Delivery/static/css/main.fa03fb20.css",
+    "main.js": "/Food-Delivery/static/js/main.5dcbd5be.js",
+    "static/media/backgroundBurger.jpeg": "/Food-Delivery/static/media/backgroundBurger.1472119a19d6ddfc66fe.jpeg",
+    "static/media/Burger stall logo - Fait avec PosterMyWall.png": "/Food-Delivery/static/media/Burger stall logo - Fait avec PosterMyWall.f43c0a90fb5805c9563f.png",
+    "index.html": "/Food-Delivery/index.html",
+    "main.fa03fb20.css.map": "/Food-Delivery/static/css/main.fa03fb20.css.map",
+    "main.5dcbd5be.js.map": "/Food-Delivery/static/js/main.5dcbd5be.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fa03fb20.css",
+    "static/js/main.5dcbd5be.js"
+  ]
+}
