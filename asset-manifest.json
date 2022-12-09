@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/Food-Delivery/static/css/main.fa03fb20.css",
-    "main.js": "/Food-Delivery/static/js/main.5dcbd5be.js",
-    "static/media/backgroundBurger.jpeg": "/Food-Delivery/static/media/backgroundBurger.1472119a19d6ddfc66fe.jpeg",
-    "static/media/Burger stall logo - Fait avec PosterMyWall.png": "/Food-Delivery/static/media/Burger stall logo - Fait avec PosterMyWall.f43c0a90fb5805c9563f.png",
-    "index.html": "/Food-Delivery/index.html",
-    "main.fa03fb20.css.map": "/Food-Delivery/static/css/main.fa03fb20.css.map",
-    "main.5dcbd5be.js.map": "/Food-Delivery/static/js/main.5dcbd5be.js.map"
+    "main.css": "/static/css/main.fa03fb20.css",
+    "main.js": "/static/js/main.343f27e7.js",
+    "static/media/backgroundBurger.jpeg": "/static/media/backgroundBurger.1472119a19d6ddfc66fe.jpeg",
+    "static/media/Burger stall logo - Fait avec PosterMyWall.png": "/static/media/Burger stall logo - Fait avec PosterMyWall.f43c0a90fb5805c9563f.png",
+    "index.html": "/index.html",
+    "main.fa03fb20.css.map": "/static/css/main.fa03fb20.css.map",
+    "main.343f27e7.js.map": "/static/js/main.343f27e7.js.map"
   },
   "entrypoints": [
     "static/css/main.fa03fb20.css",
-    "static/js/main.5dcbd5be.js"
+    "static/js/main.343f27e7.js"
   ]
 }
