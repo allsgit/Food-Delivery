@@ -3,10 +3,10 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import AdminButton from '../components/AdminButton';
 import { useContext } from 'react';
-import { DataContext } from 'context/dataContext';
+import { DataContext } from '../context/userContext';
 import useWindow from '../custom/useWindow';
 
-import ReponsivCartIcon from 'components/ReponsivCartIcon';
+import ReponsivCartIcon from '../components/ReponsivCartIcon';
 
 const NavWrapper = styled.div`
   text-align: center;

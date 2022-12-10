@@ -6,9 +6,9 @@ import { useRef, useState, useContext } from 'react';
 import { UserContext } from '../context/userContext';
 import { Circles } from 'react-loader-spinner';
 import { useNavigate } from 'react-router-dom';
-import ResgisterForm from 'components/ResgisterForm';
-import { DataContext } from 'context/dataContext';
-import Advices from 'components/Advices';
+import ResgisterForm from '../components/ResgisterForm';
+import { DataContext } from '../context/dataContext';
+import Advices from '../components/Advices';
 
 const HomePageWrapper = styled.div`
   display: flex;

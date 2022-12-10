@@ -5,7 +5,7 @@ import Cart from '.././assets/images/shopping-cart.png';
 import Back from '../assets/images/back-button.png';
 
 import { useContext } from 'react';
-import { DataContext } from 'context/dataContext';
+import { DataContext } from '../context/dataContext';
 
 const CartWrapperForResponsiv = styled.div`
   position: relative;

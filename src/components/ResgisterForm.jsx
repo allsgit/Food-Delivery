@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { UserContext } from '../context/userContext';
 import { useContext } from 'react';
-import { DataContext } from 'context/dataContext';
+import { DataContext } from '../context/dataContext';
 import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useContext, useEffect } from 'react';
-import { DataContext } from 'context/dataContext';
+import { DataContext } from '../context/dataContext';
 import Home from './Home';
 
 export default function PrivateRouteWrapper(props) {

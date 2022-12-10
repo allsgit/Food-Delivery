@@ -1,6 +1,6 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import { useContext } from 'react';
-import { DataContext } from 'context/dataContext';
+import { DataContext } from '../../context/dataContext';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import './payment-style.scss';
