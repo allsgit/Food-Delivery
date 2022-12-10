@@ -1,10 +1,10 @@
 import './App.css';
-import Private from 'private/Private';
+import Private from './Private/Private';
 import { Route, Routes } from 'react-router-dom';
 import LoginPage from './login/LoginPage';
 import PrivateRouteWrapper from './dashboad/PrivateRouteWrapper';
 import { useEffect, useState } from 'react';
-import StripeContainer from 'services/stripe/StripeContainer';
+import StripeContainer from './services/stripe/StripeContainer';
 const cartFromLocalStorage = JSON.parse(localStorage.getItem('cart') || '[]');
 
 function App() {
