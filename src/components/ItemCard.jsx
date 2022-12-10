@@ -6,7 +6,7 @@ import { keyframes } from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
 import { doc, deleteDoc } from 'firebase/firestore';
 import { db } from '../services/firebase/firebase.config';
-import { DataContext } from '../Context/dataContext';
+import { DataContext } from '../context/dataContext';
 
 const CardAppearAnimation = keyframes`
   from {

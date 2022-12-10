@@ -4,7 +4,7 @@ import Button from '../components/Button';
 import CardProductCart from '../components/CardProductCart';
 import { keyframes } from 'styled-components';
 import { Link } from 'react-router-dom';
-import { DataContext } from '../Context/dataContext';
+import { DataContext } from '../context/dataContext';
 import { useContext } from 'react';
 import { useEffect } from 'react';
 import useWindow from 'custom/useWindow';

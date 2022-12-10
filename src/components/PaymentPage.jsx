@@ -4,7 +4,7 @@ import BackgroundFiller from '../assets/images/backgroundBurger.jpeg';
 import Button from './Button';
 import BackToArrow from '../assets/images/icons8-back-to-90.png';
 import { Link } from 'react-router-dom';
-import { UserContext } from '../Context/userContext';
+import { UserContext } from '../context/userContext';
 import { useContext } from 'react';
 
 const MainWrapper = styled.div`
@@ -78,7 +78,7 @@ export default function PaymentPage(props) {
         <OrderInfoInput placeholder="Mail"></OrderInfoInput>
         <OrderInfoInput placeholder="Teléphone"></OrderInfoInput>
         <CheckoutWrapper>
-          <TotalCheckout>Total commande: {"10"} €</TotalCheckout>
+          <TotalCheckout>Total commande: {'10'} €</TotalCheckout>
           <Link to="/private/checkout/paiement">
             <Button HandleSumbit={(e) => {}} buttonUtility={'Payer La commande'} />
           </Link>

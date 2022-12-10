@@ -7,7 +7,6 @@ import styled from 'styled-components';
 
 const TopWrapper = styled.div`
 position: relative;
-background-color: red;
 @media (max-width: 414px) { 
 position: fixed;
 width: 100%;

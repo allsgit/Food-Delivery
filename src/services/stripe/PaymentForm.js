@@ -1,6 +1,6 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import { useContext } from 'react';
-import { DataContext } from 'Context/dataContext';
+import { DataContext } from 'context/dataContext';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import './payment-style.scss';
@@ -92,10 +92,7 @@ export default function PaymentForm(props) {
             </form>
           ) : (
             <>
-
-                <Confetti width={3000} height={2000} />;
-            
-
+              <Confetti width={3000} height={2000} />;
               <div className="ticket-number">
                 <h2>
                   Commande validé votre numéro est le : #{Number(milisecond)}

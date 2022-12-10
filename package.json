@@ -1,7 +1,7 @@
 {
   "name": "food",
   "version": "0.1.0",
-  "homepage": "https://allsgit.github.io/",
+  "homepage": "https://allsgit.github.io/Food-Delivery",
   "private": true,
   "dependencies": {
     "@stripe/react-stripe-js": "^1.15.0",

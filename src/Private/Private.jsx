@@ -1,13 +1,10 @@
 import React from 'react';
-import { Outlet, useLocation, Navigate } from 'react-router-dom';
+import { Outlet, Navigate } from 'react-router-dom';
 import { useContext } from 'react';
-import { UserContext } from 'Context/userContext';
-
+import { UserContext } from 'context/userContext';
 
 export default function Private() {
-  const { currentUser, setCurentUser} = useContext(UserContext);
-
-
+  const { currentUser } = useContext(UserContext);
 
   if (!currentUser) {
     return <Navigate to="/" />;

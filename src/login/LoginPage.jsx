@@ -3,11 +3,11 @@ import BurgerBackgroundImg from '../assets/images/backgroundBurger.jpeg';
 import styled from 'styled-components';
 import imgmock from '../assets/images/Burger stall logo - Fait avec PosterMyWall.png';
 import { useRef, useState, useContext } from 'react';
-import { UserContext } from '../Context/userContext';
+import { UserContext } from '../context/userContext';
 import { Circles } from 'react-loader-spinner';
 import { useNavigate } from 'react-router-dom';
 import ResgisterForm from 'components/ResgisterForm';
-import { DataContext } from 'Context/dataContext';
+import { DataContext } from 'context/dataContext';
 import Advices from 'components/Advices';
 
 const HomePageWrapper = styled.div`

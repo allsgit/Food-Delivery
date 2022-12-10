@@ -5,42 +5,41 @@ import Cart from '.././assets/images/shopping-cart.png';
 import Back from '../assets/images/back-button.png';
 
 import { useContext } from 'react';
-import { DataContext } from 'Context/dataContext';
+import { DataContext } from 'context/dataContext';
 
 const CartWrapperForResponsiv = styled.div`
-position: relative;
-margin-right: 20px;
+  position: relative;
+  margin-right: 20px;
   .span-for-back {
     position: relative;
     display: flex;
     align-items: center;
   }
 
-    .cart-icon {
-      width: 20px;
-      height: 20px;
-      margin-right: 10px;
-    }
-    .back-icon {
-      width: 30px;
-      height: 30px;
-      margin-right: 10px;
-    }
-    .number-or-articles {
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      top: -4px;
-      right: 3px;
-      background-color: green;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 10px;
-    }
-  
+  .cart-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+  }
+  .back-icon {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+  }
+  .number-or-articles {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    top: -4px;
+    right: 3px;
+    background-color: green;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 10px;
+  }
 `;
 export default function ReponsivCartIcon(props) {
   const { setShowCartResponsiv, showCartResponsiv } = useContext(DataContext);

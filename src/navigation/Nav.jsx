@@ -2,6 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import AdminButton from '../components/AdminButton';
+import { useContext } from 'react';
+import { DataContext } from 'context/dataContext';
+import useWindow from '../custom/useWindow';
 
 import ReponsivCartIcon from 'components/ReponsivCartIcon';
 
@@ -22,12 +25,15 @@ const NavWrapper = styled.div`
 `;
 
 export default function Nav(props) {
-
+  const { width, height } = useWindow();
 
   return (
     <NavWrapper>
-      <AdminButton setIsPannelAdminShowed={props.setIsPannelAdminShowed} />
-      <ReponsivCartIcon cart={props.cart}/>
+      {/** admin mod only usable on dekstop */}
+      <>
+        {width > 768 && <AdminButton setIsPannelAdminShowed={props.setIsPannelAdminShowed} />}
+        <ReponsivCartIcon cart={props.cart} />
+      </>
     </NavWrapper>
   );
 }

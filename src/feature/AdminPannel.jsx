@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { keyframes } from 'styled-components';
 import { useRef, useState, useEffect } from 'react';
-import { DataContext } from '../Context/dataContext';
+import { DataContext } from '../context/dataContext';
 import { useContext } from 'react';
 import { collection, getDocs, addDoc } from 'firebase/firestore';
 import { db } from '../services/firebase/firebase.config';

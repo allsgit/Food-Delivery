@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { UserContext } from '../Context/userContext';
+import { UserContext } from '../context/userContext';
 import { useContext } from 'react';
 
 const IconProfilWrapper = styled.div`

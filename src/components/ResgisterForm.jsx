@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { UserContext } from '../Context/userContext';
+import { UserContext } from '../context/userContext';
 import { useContext } from 'react';
-import { DataContext } from 'Context/dataContext';
+import { DataContext } from 'context/dataContext';
 import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
@@ -51,7 +51,7 @@ const RegisterWrapper = styled.form`
     width: 50%;
     margin-bottom: 10px;
     height: 60px;
-    background: #F1F1F1;
+    background: #f1f1f1;
     z-index: 100;
     font-size: 19px;
     border: none;

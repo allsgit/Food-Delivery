@@ -1,15 +1,12 @@
 import React from 'react';
 import { useState, useContext, useEffect } from 'react';
-import { DataContext } from 'Context/dataContext';
+import { DataContext } from 'context/dataContext';
 import Home from './Home';
 
-
 export default function PrivateRouteWrapper(props) {
-
   const { burgerList, setBurgerlist } = useContext(DataContext);
 
   const [isPannelAdminShowed, setIsPannelAdminShowed] = useState(false);
-
 
   return (
     <>

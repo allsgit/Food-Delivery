@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useState, useContext } from 'react';
-import { UserContext } from '../Context/userContext';
+import { UserContext } from '../context/userContext';
 
 const CheckBoxWrapper = styled.div`
   position: relative;
