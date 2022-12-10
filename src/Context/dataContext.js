@@ -11,6 +11,7 @@ export function DataContextProvider(props) {
   const [selectPub, setSelectPub] = useState('no pub');
   const [cartValue, setCartValue] = useState(0);
   const [registerToogle, setRegisterToogle] = useState(false);
+  const [showCartResponsiv, setShowCartResponsiv] = useState(false)
 
   return (
     <DataContext.Provider
@@ -26,7 +27,9 @@ export function DataContextProvider(props) {
         cartValue,
         setCartValue,
         registerToogle,
-        setRegisterToogle
+        setRegisterToogle,
+        setShowCartResponsiv,
+        showCartResponsiv,
       }}
     >
       {props.children}

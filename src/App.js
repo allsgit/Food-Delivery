@@ -14,6 +14,7 @@ const cartFromLocalStorage = JSON.parse(localStorage.getItem('cart') || '[]');
 
 
 
+
 function App() {
   // *! Local storge of cart //
   const [cart, setCart] = useState(cartFromLocalStorage);

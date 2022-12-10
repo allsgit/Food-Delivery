@@ -19,7 +19,7 @@ export default function Advices() {
   return (
     <AdvWrapper>
       <p>log admin : admin@food.com - password : aaaaaa</p>
-      <p>log user : foo@foo.com - password : aaaaaa</p>
+      <p>log user : foo@foo.com - password : aaaaaa   --- Or --- create new user </p>
     </AdvWrapper>
   );
 }

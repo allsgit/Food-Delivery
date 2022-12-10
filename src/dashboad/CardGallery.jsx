@@ -7,6 +7,10 @@ const GalleryWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  @media (max-width: 414px) { 
+    width: 100%;
+    margin-top: 120px;
+   }
 `;
 
 export default function CardGallery(props) {

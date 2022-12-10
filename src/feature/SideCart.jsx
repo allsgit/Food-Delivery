@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { DataContext } from '../Context/dataContext';
 import { useContext } from 'react';
 import { useEffect } from 'react';
-
+import useWindow from 'custom/useWindow';
 
 const PriceChangeAnimation = keyframes`
 from{
@@ -22,7 +22,6 @@ const SideCartWrapper = styled.div`
   position: fixed;
   display: flex;
   z-index: 20;
-
   align-items: center;
   flex-direction: column;
   right: 0;
@@ -32,6 +31,11 @@ const SideCartWrapper = styled.div`
   height: 100vh;
   background-color: #fff;
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  transition: 0.3s;
+  @media (max-width: 414px) {
+    width: ${(props) => (props.showCartResponsiv === true ? '100%' : '0%')};
+    height: 100%;
+  }
 
   .total-value-wrapper {
     width: 100%;
@@ -56,6 +60,10 @@ const CartHolderWrapper = styled.div`
   height: 90%;
   width: 100%;
   scroll-behavior: smooth;
+
+  @media (max-width: 414px) {
+    height: 54%;
+  }
 `;
 const TotalPrice = styled.p`
   text-align: center;
@@ -68,8 +76,8 @@ const TotalPrice = styled.p`
 const TotalProduct = styled.p``;
 
 export default function SideCart(props) {
-  const { cartValue, setCartValue } = useContext(DataContext);
-
+  const { cartValue, setCartValue, setShowCartResponsiv, showCartResponsiv } = useContext(DataContext);
+  const { width, height } = useWindow();
   const totalValue = props.cart.reduce((a, v) => (a = a + v.price), 0);
 
   const totalItemAdded = props.cart.length;
@@ -80,30 +88,36 @@ export default function SideCart(props) {
   }, [totalValue]);
 
   return (
-    <SideCartWrapper>
-      <TitleCart>Votre panier</TitleCart>
-      <CartHolderWrapper>
-        {props.cart.map((ItemInCart) => {
-          return (
-            <CardProductCart
-              name={ItemInCart.name}
-              id={ItemInCart.id}
-              price={ItemInCart.price}
-              image={ItemInCart.image}
-              setCart={props.setCart}
-              cart={props.cart}
-              key={ItemInCart.id}
-            />
-          );
-        })}
-      </CartHolderWrapper>
-      <div className="total-value-wrapper">
-        Total commande: <TotalPrice key={totalValue}> {totalValue.toFixed(2)} </TotalPrice>€
-      </div>
-      <div className="total-item-added">{totalItemAdded} article(s)</div>
-      <Link to="/private/checkout">
-        <Button buttonUtility={'Payer la commande'} style={{ padding: '10px' }} />
-      </Link>
-    </SideCartWrapper>
+    <>
+      <SideCartWrapper showCartResponsiv={showCartResponsiv}>
+        {(width > 600 || showCartResponsiv === true) && (
+          <>
+            <TitleCart>Votre panier</TitleCart>
+            <CartHolderWrapper>
+              {props.cart.map((ItemInCart) => {
+                return (
+                  <CardProductCart
+                    name={ItemInCart.name}
+                    id={ItemInCart.id}
+                    price={ItemInCart.price}
+                    image={ItemInCart.image}
+                    setCart={props.setCart}
+                    cart={props.cart}
+                    key={ItemInCart.id}
+                  />
+                );
+              })}
+            </CartHolderWrapper>
+            <div className="total-value-wrapper">
+              Total commande: <TotalPrice key={totalValue}> {totalValue.toFixed(2)} </TotalPrice>€
+            </div>
+            <div className="total-item-added">{totalItemAdded} article(s)</div>
+            <Link to="/private/checkout">
+              <Button buttonUtility={'Payer la commande'} style={{ padding: '10px' }} />
+            </Link>
+          </>
+        )}
+      </SideCartWrapper>
+    </>
   );
 }
