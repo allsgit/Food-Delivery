@@ -1,7 +1,7 @@
 import React from 'react';
 import { Outlet, Navigate } from 'react-router-dom';
 import { useContext } from 'react';
-import { UserContext } from 'context/userContext';
+import { UserContext } from './Context/userContext';
 
 export default function Private() {
   const { currentUser } = useContext(UserContext);

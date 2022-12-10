@@ -1,8 +1,8 @@
 {
   "name": "food",
   "version": "0.1.0",
-  "homepage": "https://allsgit.github.io/Food-Delivery",
   "private": true,
+  "homepage": "https://allsgit.github.io/",
   "dependencies": {
     "@stripe/react-stripe-js": "^1.15.0",
     "@stripe/stripe-js": "^1.45.0",
@@ -12,6 +12,7 @@
     "axios": "^0.27.2",
     "firebase": "^9.13.0",
     "materialize-css": "^1.0.0-rc.2",
+    "node": "^19.2.0",
     "react": "^18.2.0",
     "react-confetti": "^6.1.0",
     "react-dom": "^18.2.0",
