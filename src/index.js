@@ -8,7 +8,7 @@ import { DataContextProvider } from './context/dataContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <HashRouter base="/">
+  <HashRouter base="/Food-Delivery">
     <React.StrictMode>
       <UserContextProvider>
         <DataContextProvider>
