@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/Food-Delivery/static/css/main.3fe4a347.css",
-    "main.js": "/Food-Delivery/static/js/main.1604a59c.js",
+    "main.js": "/Food-Delivery/static/js/main.8107ac0b.js",
     "static/media/backgroundBurger.jpeg": "/Food-Delivery/static/media/backgroundBurger.1472119a19d6ddfc66fe.jpeg",
     "static/media/Burger stall logo - Fait avec PosterMyWall.png": "/Food-Delivery/static/media/Burger stall logo - Fait avec PosterMyWall.f43c0a90fb5805c9563f.png",
     "static/media/shopping-cart.png": "/Food-Delivery/static/media/shopping-cart.78215909b21f0b186a7f.png",
     "index.html": "/Food-Delivery/index.html",
     "main.3fe4a347.css.map": "/Food-Delivery/static/css/main.3fe4a347.css.map",
-    "main.1604a59c.js.map": "/Food-Delivery/static/js/main.1604a59c.js.map"
+    "main.8107ac0b.js.map": "/Food-Delivery/static/js/main.8107ac0b.js.map"
   },
   "entrypoints": [
     "static/css/main.3fe4a347.css",
-    "static/js/main.1604a59c.js"
+    "static/js/main.8107ac0b.js"
   ]
 }
