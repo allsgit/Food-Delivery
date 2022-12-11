@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/Food-Delivery/static/css/main.fa03fb20.css",
-    "main.js": "/Food-Delivery/static/js/main.35c312dd.js",
+    "main.css": "/Food-Delivery/static/css/main.3fe4a347.css",
+    "main.js": "/Food-Delivery/static/js/main.1604a59c.js",
     "static/media/backgroundBurger.jpeg": "/Food-Delivery/static/media/backgroundBurger.1472119a19d6ddfc66fe.jpeg",
     "static/media/Burger stall logo - Fait avec PosterMyWall.png": "/Food-Delivery/static/media/Burger stall logo - Fait avec PosterMyWall.f43c0a90fb5805c9563f.png",
     "static/media/shopping-cart.png": "/Food-Delivery/static/media/shopping-cart.78215909b21f0b186a7f.png",
     "index.html": "/Food-Delivery/index.html",
-    "main.fa03fb20.css.map": "/Food-Delivery/static/css/main.fa03fb20.css.map",
-    "main.35c312dd.js.map": "/Food-Delivery/static/js/main.35c312dd.js.map"
+    "main.3fe4a347.css.map": "/Food-Delivery/static/css/main.3fe4a347.css.map",
+    "main.1604a59c.js.map": "/Food-Delivery/static/js/main.1604a59c.js.map"
   },
   "entrypoints": [
-    "static/css/main.fa03fb20.css",
-    "static/js/main.35c312dd.js"
+    "static/css/main.3fe4a347.css",
+    "static/js/main.1604a59c.js"
   ]
 }
