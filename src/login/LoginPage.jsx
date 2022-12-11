@@ -47,6 +47,9 @@ const InputWrapper = styled.form`
     width: 40%;
     top: -200px;
     z-index: 10;
+    @media (max-width: 414px) {
+     top: -130px
+    }
   }
   .head-title {
     color: #f2a832;
@@ -54,6 +57,10 @@ const InputWrapper = styled.form`
     margin-bottom: 10px;
     font-size: 40px;
     z-index: 10;
+    @media (max-width: 414px) {
+     font-size: 20px;
+     margin-top: 0;
+    }
   }
   .separator {
     width: 400px;
@@ -61,6 +68,9 @@ const InputWrapper = styled.form`
     background: #f2a832b2;
     margin: 20px 0;
     border-radius: 5px;
+    @media (max-width: 414px) {
+     width: 90%;
+    }
   }
   .input-titles {
     color: white;
@@ -102,6 +112,9 @@ const LoginNameInput = styled.input`
   &::placeholder {
     font-size: 16px;
   }
+  @media (max-width: 414px) {
+     width: 90%;
+    }
 `;
 const ErrorMsgSign = styled.p`
   font-size: 20px;

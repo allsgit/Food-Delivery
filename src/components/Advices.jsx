@@ -8,7 +8,7 @@ justify-content: space-between;
 p{
 
     width: auto;
-    height: 20px;
+    height: auto;
     background-color: white;
     opacity: 1;
     z-index: 10000;

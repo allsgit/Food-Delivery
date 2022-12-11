@@ -27,6 +27,10 @@ const RegisterWrapper = styled.form`
     font-size: 23px;
     z-index: 10;
     margin: 10px 0;
+    @media (max-width: 414px) {
+      font-size: 12px;
+      text-align: center;
+    }
   }
   .submit {
     margin: 10px 0;
@@ -58,6 +62,10 @@ const RegisterWrapper = styled.form`
     &::placeholder {
       font-size: 16px;
     }
+    @media (max-width: 414px) {
+   width: 90%;
+    }
+    
   }
   .arrow-temporaire {
     background-color: red;

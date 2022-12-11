@@ -20,7 +20,6 @@ function App() {
         <Route path="/" element={<LoginPage />} />
         <Route path="/private" element={<Private />}>
           <Route path="/private/order" element={<PrivateRouteWrapper cart={cart} setCart={setCart} />} />
-          {/*           <Route path="/private/checkout" element={<PaymentPage />} /> */}
           <Route path="/private/checkout" element={<StripeContainer setCart={setCart} />} />
         </Route>
       </Routes>
